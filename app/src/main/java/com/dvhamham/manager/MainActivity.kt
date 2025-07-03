@@ -93,14 +93,6 @@ class MainActivity : ComponentActivity() {
             var updateVersion by remember { mutableStateOf("") }
             val coroutineScope = rememberCoroutineScope()
 
-            // Always show the dialog on every launch if update is available
-            LaunchedEffect(updateVersion, showMajorUpdateDialog) {
-                if (showMajorUpdateDialog) return@LaunchedEffect
-                if (updateVersion.isNotEmpty() && showMinorUpdateDialog == false) {
-                    showMinorUpdateDialog = true
-                }
-            }
-
             LaunchedEffect(Unit) {
                 coroutineScope.launch {
                     try {
@@ -109,28 +101,37 @@ class MainActivity : ComponentActivity() {
                         connection.connectTimeout = 3000
                         connection.readTimeout = 3000
                         connection.requestMethod = "GET"
+
                         val response = withContext(Dispatchers.IO) {
                             connection.inputStream.bufferedReader().use { it.readText() }
                         }
+
                         val json = JSONObject(response)
                         val status = json.optBoolean("status", false)
                         val remoteVersion = json.optString("version", "")
                         val downloadUrl = json.optString("download", "")
                         val currentVersion = BuildConfig.VERSION_NAME
+
                         updateDownloadUrl = downloadUrl
                         updateVersion = remoteVersion
-                        if (status && remoteVersion.isNotEmpty() && remoteVersion != currentVersion) {
-                            val remoteParts = remoteVersion.split(".").mapNotNull { it.toIntOrNull() }
-                            val currentParts = currentVersion.split(".").mapNotNull { it.toIntOrNull() }
-                            if (remoteParts.size == 3 && currentParts.size == 3) {
-                                if (remoteParts[0] > currentParts[0]) {
-                                    showMajorUpdateDialog = true
-                                } else if (remoteParts[0] == currentParts[0] && remoteParts[1] > currentParts[1]) {
-                                    showMinorUpdateDialog = true
-                                }
-                            }
+                        showMajorUpdateDialog = false
+                        showMinorUpdateDialog = false
+
+                   if (status && remoteVersion.isNotEmpty()) {
+                    checkUpdate(currentVersion, remoteVersion, isMajor = true) {
+                        showMajorUpdateDialog = true
+                        return@checkUpdate
+                    }
+                    if (!showMajorUpdateDialog) {
+                        checkUpdate(currentVersion, remoteVersion, isMajor = false) {
+                            showMinorUpdateDialog = true
                         }
-                    } catch (_: Exception) {}
+                    }
+                }
+                   
+                    } catch (e: Exception) {
+                        Log.e("UpdateCheck", "Error: ", e)
+                    }
                 }
             }
             
@@ -285,6 +286,22 @@ class MainActivity : ComponentActivity() {
         } catch (e: Exception) {
             Log.e("MainActivity", "Error handling incoming intent: ${e.message}")
             e.printStackTrace()
+        }
+    }
+
+    fun checkUpdate(currentVersion: String, remoteVersion: String, isMajor: Boolean, onShowDialog: () -> Unit) {
+        val currentParts = currentVersion.split(".").map { it.toIntOrNull() ?: 0 }
+        val remoteParts = remoteVersion.split(".").map { it.toIntOrNull() ?: 0 }
+        if (remoteParts.size >= 3 && currentParts.size >= 3) {
+            if (isMajor) {
+                if (remoteParts[0] > currentParts[0]) {
+                    onShowDialog()
+                }
+            } else {
+                if (remoteParts[0] == currentParts[0] && remoteParts[1] > currentParts[1]) {
+                    onShowDialog()
+                }
+            }
         }
     }
 } 
