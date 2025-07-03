@@ -93,6 +93,14 @@ class MainActivity : ComponentActivity() {
             var updateVersion by remember { mutableStateOf("") }
             val coroutineScope = rememberCoroutineScope()
 
+            // Always show the dialog on every launch if update is available
+            LaunchedEffect(updateVersion, showMajorUpdateDialog) {
+                if (showMajorUpdateDialog) return@LaunchedEffect
+                if (updateVersion.isNotEmpty() && showMinorUpdateDialog == false) {
+                    showMinorUpdateDialog = true
+                }
+            }
+
             LaunchedEffect(Unit) {
                 coroutineScope.launch {
                     try {
@@ -176,7 +184,7 @@ class MainActivity : ComponentActivity() {
                         if (showMajorUpdateDialog) {
                             AlertDialog(
                                 onDismissRequest = {}, // Not dismissible
-                                title = { Text("Major Update Required") },
+                                title = { Text("Update Required") },
                                 text = { Text("A major update ($updateVersion) is required to continue using the app.") },
                                 confirmButton = {
                                     Button(onClick = {
