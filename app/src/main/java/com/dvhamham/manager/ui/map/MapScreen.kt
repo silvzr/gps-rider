@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -51,6 +53,8 @@ fun MapScreen(
     val showAddToFavoritesDialog = uiState.addToFavoritesDialogState == DialogState.Visible
 
     var showOptionsMenu by remember { mutableStateOf(false) }
+
+    val haptic = LocalHapticFeedback.current
 
     Box(
         modifier = modifier.fillMaxSize()
@@ -129,6 +133,7 @@ fun MapScreen(
             // Add to Favorites FAB
             FloatingActionButton(
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     mapViewModel.showAddToFavoritesDialog()
                 },
                 modifier = Modifier.size(56.dp),
@@ -151,6 +156,7 @@ fun MapScreen(
             // Center to My Location FAB
             FloatingActionButton(
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     mapViewModel.triggerCenterMapEvent()
                 },
                 modifier = Modifier.size(56.dp),
@@ -173,6 +179,7 @@ fun MapScreen(
             // Toggle Fake Location FAB - Main Button
             FloatingActionButton(
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     if (isFabClickable) {
                         mapViewModel.togglePlaying()
                     } else {

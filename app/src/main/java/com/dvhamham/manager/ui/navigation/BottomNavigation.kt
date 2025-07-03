@@ -25,11 +25,14 @@ import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.runtime.CompositionLocalProvider
 import com.dvhamham.R
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val haptic = LocalHapticFeedback.current
 
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Row(
@@ -55,6 +58,7 @@ fun BottomNavigationBar(navController: NavController) {
                         }
                     )
                     .clickable {
+                        haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         if (currentRoute != Screen.Map.route) {
                             navController.navigate(Screen.Map.route) {
                                 popUpTo(navController.graph.startDestinationId) {
@@ -110,6 +114,7 @@ fun BottomNavigationBar(navController: NavController) {
                         }
                     )
                     .clickable {
+                        haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         if (currentRoute != Screen.Favorites.route) {
                             navController.navigate(Screen.Favorites.route) {
                                 popUpTo(navController.graph.startDestinationId) {
@@ -165,6 +170,7 @@ fun BottomNavigationBar(navController: NavController) {
                         }
                     )
                     .clickable {
+                        haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                         if (currentRoute != Screen.Settings.route) {
                             navController.navigate(Screen.Settings.route) {
                                 popUpTo(navController.graph.startDestinationId) {
