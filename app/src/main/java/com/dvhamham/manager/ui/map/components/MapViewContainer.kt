@@ -57,26 +57,16 @@ fun MapViewContainer(
     }
 
     // Always restore camera position from ViewModel state
-    val initialCameraPosition = remember(uiState.mapZoom, uiState.mapLatitude, uiState.mapLongitude, lastClickedGoogleLatLng, userGoogleLatLng) {
+    val initialCameraPosition = remember(uiState.isPlaying, uiState.mapZoom, uiState.mapLatitude, uiState.mapLongitude, lastClickedGoogleLatLng) {
         val mapLat = uiState.mapLatitude
         val mapLng = uiState.mapLongitude
-        when {
-            lastClickedGoogleLatLng != null -> CameraPosition.fromLatLngZoom(
-                lastClickedGoogleLatLng,
-                (uiState.mapZoom ?: DEFAULT_MAP_ZOOM).toFloat()
-            )
-            userGoogleLatLng != null -> CameraPosition.fromLatLngZoom(
-                userGoogleLatLng,
-                (uiState.mapZoom ?: DEFAULT_MAP_ZOOM).toFloat()
-            )
-            mapLat != null && mapLng != null -> CameraPosition.fromLatLngZoom(
-                GoogleLatLng(mapLat, mapLng),
-                (uiState.mapZoom ?: DEFAULT_MAP_ZOOM).toFloat()
-            )
-            else -> CameraPosition.fromLatLngZoom(
-                GoogleLatLng(0.0, 0.0),
-                (uiState.mapZoom ?: WORLD_MAP_ZOOM).toFloat()
-            )
+        val zoom = (uiState.mapZoom ?: DEFAULT_MAP_ZOOM).toFloat()
+        if (uiState.isPlaying && lastClickedGoogleLatLng != null) {
+            CameraPosition.fromLatLngZoom(lastClickedGoogleLatLng, zoom)
+        } else if (mapLat != null && mapLng != null) {
+            CameraPosition.fromLatLngZoom(GoogleLatLng(mapLat, mapLng), zoom)
+        } else {
+            CameraPosition.fromLatLngZoom(GoogleLatLng(0.0, 0.0), WORLD_MAP_ZOOM.toFloat())
         }
     }
     val cameraPositionState = rememberCameraPositionState { position = initialCameraPosition }

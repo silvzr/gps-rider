@@ -71,16 +71,23 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 You can control GPS Rider from other apps using Intents:
 
-- **Start fake location**: `com.hamham.gpsrider.START_FAKE_LOCATION`
-- **Stop fake location**: `com.hamham.gpsrider.STOP_FAKE_LOCATION`
-- **Toggle fake location**: `com.hamham.gpsrider.TOGGLE_FAKE_LOCATION`
-- **Set custom location**: `com.hamham.gpsrider.SET_CUSTOM_LOCATION` (extras: `latitude`, `longitude`)
-- **Set accuracy**: `com.hamham.gpsrider.SET_ACCURACY` (extra: `accuracy`)
-- **Randomize location**: `com.hamham.gpsrider.RANDOMIZE_LOCATION` (extra: `radius`)
-- **Get status**: `com.hamham.gpsrider.GET_STATUS`
-- **Get current location**: `com.hamham.gpsrider.GET_CURRENT_LOCATION`
+`adb shell am startservice -a ...`
 
-See `IntentApiDocs.kt` and the in-app documentation for more details.
+- **Start fake location**: `com.dvhamham.START_FAKE_LOCATION`
+
+- **Stop fake location**: `com.hamham.gpsrider.STOP_FAKE_LOCATION`
+
+- **Toggle fake location**: `com.hamham.gpsrider.TOGGLE_FAKE_LOCATION`
+
+- **Set custom location**: `com.hamham.gpsrider.SET_CUSTOM_LOCATION` --es `latitude` --es `longitude`
+
+- **Set Favorite location**: `com.dvhamham.SET_FAVORITE_LOCATION --es favorite_name favName` -
+
+  
+
+---
+
+> **Note:** All commands can be executed from other Android apps or via ADB. GPS Rider must be installed and enabled as a service.
 
 ---
 

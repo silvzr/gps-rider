@@ -87,51 +87,48 @@ class MainActivity : ComponentActivity() {
             showModuleDialog = !isModuleActive
             
             // --- Update Check State ---
-            var showMinorUpdateDialog by remember { mutableStateOf(false) }
-            var showMajorUpdateDialog by remember { mutableStateOf(false) }
+            var showUpdateDialog by remember { mutableStateOf(false) }
             var updateDownloadUrl by remember { mutableStateOf("") }
             var updateVersion by remember { mutableStateOf("") }
             val coroutineScope = rememberCoroutineScope()
 
-            LaunchedEffect(Unit) {
-                coroutineScope.launch {
-                    try {
-                        val url = URL("https://raw.githubusercontent.com/dvhamham/gps-rider/main/update.json")
-                        val connection = withContext(Dispatchers.IO) { url.openConnection() as HttpURLConnection }
-                        connection.connectTimeout = 3000
-                        connection.readTimeout = 3000
-                        connection.requestMethod = "GET"
-
-                        val response = withContext(Dispatchers.IO) {
-                            connection.inputStream.bufferedReader().use { it.readText() }
-                        }
-
-                        val json = JSONObject(response)
-                        val status = json.optBoolean("status", false)
-                        val remoteVersion = json.optString("version", "")
-                        val downloadUrl = json.optString("download", "")
-                        val currentVersion = BuildConfig.VERSION_NAME
-
-                        updateDownloadUrl = downloadUrl
-                        updateVersion = remoteVersion
-                        showMajorUpdateDialog = false
-                        showMinorUpdateDialog = false
-
-                   if (status && remoteVersion.isNotEmpty()) {
-                    checkUpdate(currentVersion, remoteVersion, isMajor = true) {
-                        showMajorUpdateDialog = true
-                        return@checkUpdate
-                    }
-                    if (!showMajorUpdateDialog) {
-                        checkUpdate(currentVersion, remoteVersion, isMajor = false) {
-                            showMinorUpdateDialog = true
-                        }
-                    }
+            fun checkForUpdate(currentVersion: String, remoteVersion: String): Boolean {
+                val currentParts = currentVersion.split(".").map { it.toIntOrNull() ?: 0 }
+                val remoteParts = remoteVersion.split(".").map { it.toIntOrNull() ?: 0 }
+                if (remoteParts.size >= 3 && currentParts.size >= 3) {
+                    // Major or minor update
+                    if (remoteParts[0] > currentParts[0]) return true
+                    if (remoteParts[0] == currentParts[0] && remoteParts[1] > currentParts[1]) return true
                 }
-                   
-                    } catch (e: Exception) {
-                        Log.e("UpdateCheck", "Error: ", e)
+                return false
+            }
+
+            LaunchedEffect(Unit) {
+                try {
+                    val url = URL("https://raw.githubusercontent.com/dvhamham/gps-rider/main/update.json?ts=" + System.currentTimeMillis())
+                    val connection = withContext(Dispatchers.IO) { url.openConnection() as HttpURLConnection }
+                    connection.connectTimeout = 3000
+                    connection.readTimeout = 3000
+                    connection.requestMethod = "GET"
+
+                    val response = withContext(Dispatchers.IO) {
+                        connection.inputStream.bufferedReader().use { it.readText() }
                     }
+
+                    val json = JSONObject(response)
+                    val remoteVersion = json.optString("version", "")
+                    val downloadUrl = json.optString("download", "")
+                    val currentVersion = BuildConfig.VERSION_NAME
+
+                    updateDownloadUrl = downloadUrl
+                    updateVersion = remoteVersion
+                    showUpdateDialog = false
+
+                    if (remoteVersion.isNotEmpty() && checkForUpdate(currentVersion, remoteVersion)) {
+                        showUpdateDialog = true
+                    }
+                } catch (e: Exception) {
+                    Log.e("UpdateCheck", "Error: ", e)
                 }
             }
             
@@ -163,14 +160,14 @@ class MainActivity : ComponentActivity() {
                         if (showModuleDialog) {
                             ModuleNotActiveDialog()
                         }
-                        if (showMinorUpdateDialog) {
+                        if (showUpdateDialog) {
                             AlertDialog(
-                                onDismissRequest = { showMinorUpdateDialog = false },
+                                onDismissRequest = { showUpdateDialog = false },
                                 title = { Text("Update Available") },
-                                text = { Text("A new minor update ($updateVersion) is available. Would you like to update?") },
+                                text = { Text("A new update ($updateVersion) is available. Would you like to update?") },
                                 confirmButton = {
                                     Button(onClick = {
-                                        showMinorUpdateDialog = false
+                                        showUpdateDialog = false
                                         if (updateDownloadUrl.isNotEmpty()) {
                                             val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(updateDownloadUrl))
                                             startActivity(intent)
@@ -178,24 +175,8 @@ class MainActivity : ComponentActivity() {
                                     }) { Text("Update") }
                                 },
                                 dismissButton = {
-                                    Button(onClick = { showMinorUpdateDialog = false }) { Text("Later") }
+                                    Button(onClick = { showUpdateDialog = false }) { Text("Later") }
                                 }
-                            )
-                        }
-                        if (showMajorUpdateDialog) {
-                            AlertDialog(
-                                onDismissRequest = {}, // Not dismissible
-                                title = { Text("Update Required") },
-                                text = { Text("A major update ($updateVersion) is required to continue using the app.") },
-                                confirmButton = {
-                                    Button(onClick = {
-                                        if (updateDownloadUrl.isNotEmpty()) {
-                                            val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(updateDownloadUrl))
-                                            startActivity(intent)
-                                        }
-                                    }) { Text("Update Now") }
-                                },
-                                dismissButton = null
                             )
                         }
                     }
@@ -286,22 +267,6 @@ class MainActivity : ComponentActivity() {
         } catch (e: Exception) {
             Log.e("MainActivity", "Error handling incoming intent: ${e.message}")
             e.printStackTrace()
-        }
-    }
-
-    fun checkUpdate(currentVersion: String, remoteVersion: String, isMajor: Boolean, onShowDialog: () -> Unit) {
-        val currentParts = currentVersion.split(".").map { it.toIntOrNull() ?: 0 }
-        val remoteParts = remoteVersion.split(".").map { it.toIntOrNull() ?: 0 }
-        if (remoteParts.size >= 3 && currentParts.size >= 3) {
-            if (isMajor) {
-                if (remoteParts[0] > currentParts[0]) {
-                    onShowDialog()
-                }
-            } else {
-                if (remoteParts[0] == currentParts[0] && remoteParts[1] > currentParts[1]) {
-                    onShowDialog()
-                }
-            }
         }
     }
 } 
