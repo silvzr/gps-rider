@@ -25,6 +25,12 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowInsetsControllerCompat
 import android.util.Log
 import com.dvhamham.manager.ui.theme.StatusBarModernDark
+import com.dvhamham.manager.XposedChecker
+import com.dvhamham.manager.ui.components.ModuleNotActiveDialog
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 class MainActivity : ComponentActivity() {
     
@@ -63,20 +69,22 @@ class MainActivity : ComponentActivity() {
             val themeManager = rememberThemeManager()
             val isDarkMode = themeManager.isDarkMode.collectAsState().value
             
+            // --- LSPosed Module Check ---
+            var showModuleDialog by remember { mutableStateOf(false) }
+            val isModuleActive = XposedChecker.isModuleActive()
+            if (!isModuleActive) showModuleDialog = true
+            
             CompositionLocalProvider(LocalThemeManager provides themeManager) {
                 GPSRiderTheme(darkTheme = isDarkMode) {
                     // Update status bar after theme is applied
                     LaunchedEffect(isDarkMode) {
                         val windowInsetsController = WindowInsetsControllerCompat(window, window.decorView)
-                        
                         if (isDarkMode) {
-                            // Dark theme: use custom dark status bar color
                             window.statusBarColor = StatusBarDark.toArgb()
                             window.navigationBarColor = StatusBarDark.toArgb()
                             windowInsetsController.isAppearanceLightStatusBars = false
                             windowInsetsController.isAppearanceLightNavigationBars = false
                         } else {
-                            // Light theme: use modern dark status bar color
                             window.statusBarColor = StatusBarModernDark.toArgb()
                             window.navigationBarColor = StatusBarModernDark.toArgb()
                             windowInsetsController.isAppearanceLightStatusBars = true
@@ -91,6 +99,9 @@ class MainActivity : ComponentActivity() {
                         MainNavGraphWithBottomBarAndPermissions(
                             navController = navController
                         )
+                        if (showModuleDialog) {
+                            ModuleNotActiveDialog()
+                        }
                     }
                 }
             }
