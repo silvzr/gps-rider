@@ -13,6 +13,8 @@ import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -49,7 +51,7 @@ private object Dimensions {
 private object SettingDefinitions {
     // Define setting categories
     val CATEGORIES = mapOf(
-        "Appearance" to listOf("Dark Mode"),
+        "Appearance" to listOf("Dark Mode", "Disable Night Map Mode"),
         "Location" to listOf("Randomize Nearby Location", "Custom Horizontal Accuracy", "Custom Vertical Accuracy"),
         "Altitude" to listOf("Custom Altitude", "Custom MSL", "Custom MSL Accuracy"),
         "Movement" to listOf("Custom Speed", "Custom Speed Accuracy"),
@@ -61,6 +63,13 @@ private object SettingDefinitions {
     fun getSettings(viewModel: SettingsViewModel): List<SettingData> = listOf(
         // Dark Mode Setting
         ThemeSettingData(),
+        // Disable Night Map Mode
+        BooleanSettingData(
+            title = "Disable Night Map Mode",
+            description = "Keep the map always light.",
+            useValueState = viewModel.disableNightMapMode.collectAsState(),
+            setUseValue = viewModel::setDisableNightMapMode
+        ),
         // Randomize Nearby Location
         DoubleSettingData(
             title = "Randomize Nearby Location",
@@ -224,6 +233,49 @@ fun SettingsScreen(
                             } else {
                                 when (setting) {
                                     is ThemeSettingData -> ThemeSettingComposable(setting, themeManager)
+                                    is BooleanSettingData -> {
+                                        Row(
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(Dimensions.SPACING_SMALL)
+                                        ) {
+                                            Column(modifier = Modifier.weight(1f)) {
+                                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Map,
+                                                        contentDescription = "Map icon",
+                                                        tint = MaterialTheme.colorScheme.primary,
+                                                        modifier = Modifier.size(20.dp)
+                                                    )
+                                                    Spacer(modifier = Modifier.width(Dimensions.SPACING_SMALL))
+                                                    Text(
+                                                        text = setting.title,
+                                                        style = MaterialTheme.typography.titleMedium,
+                                                        fontWeight = FontWeight.Medium
+                                                    )
+                                                }
+                                                if (setting.description.isNotBlank()) {
+                                                    Text(
+                                                        text = setting.description,
+                                                        style = MaterialTheme.typography.bodySmall,
+                                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                                        modifier = Modifier.padding(top = Dimensions.SPACING_EXTRA_SMALL)
+                                                    )
+                                                }
+                                            }
+                                            Switch(
+                                                checked = setting.useValueState.value,
+                                                onCheckedChange = setting.setUseValue,
+                                                colors = SwitchDefaults.colors(
+                                                    checkedThumbColor = MaterialTheme.colorScheme.primary,
+                                                    checkedTrackColor = MaterialTheme.colorScheme.primaryContainer,
+                                                    uncheckedThumbColor = MaterialTheme.colorScheme.outline,
+                                                    uncheckedTrackColor = MaterialTheme.colorScheme.surfaceVariant
+                                                )
+                                            )
+                                        }
+                                    }
                                     is DoubleSettingData -> {}
                                     is FloatSettingData -> {}
                                     is HookSystemSettingData -> SettingDialogButton(setting)
@@ -248,64 +300,80 @@ fun SettingsScreen(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 32.dp, bottom = 8.dp),
+                .padding(top = 8.dp, bottom = 8.dp),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f)
             )
         ) {
-            Column(
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                    .padding(20.dp)
             ) {
-                Text(
-                    text = "About me",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.padding(bottom = 10.dp)
+                // Profile Icon (أكبر)
+                Icon(
+                    imageVector = androidx.compose.material.icons.Icons.Default.AccountCircle,
+                    contentDescription = "Profile Icon",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier
+                        .size(80.dp)
+                        .clip(RoundedCornerShape(50))
                 )
-                Text(
-                    text = "Mohammed Hamham",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                // Vertical Divider
+                Spacer(modifier = Modifier.width(20.dp))
+                Divider(
+                    modifier = Modifier
+                        .height(90.dp)
+                        .width(1.5.dp),
+                    color = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                    // vertical divider
                 )
-                Text(
-                    text = "Full Stack Developer from Morocco",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.padding(bottom = 8.dp).fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    text = "Email: dv.hamham@gmail.com",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    modifier = Modifier.padding(bottom = 8.dp).fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
-                Button(
-                    onClick = {
-                        // Open PayPal support link
-                        val url = "https://www.paypal.com/paypalme/mohammedhamham"
-                        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))
-                        context.startActivity(intent)
-                    },
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                Spacer(modifier = Modifier.width(20.dp))
+                // Info & Button
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.Start
                 ) {
-                    Text("Support via PayPal")
+                    Text(
+                        text = "Mohammed Hamham",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Start
+                    )
+                    Text(
+                        text = "Full Stack Developer, Morocco",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Start
+                    )
+                    Text(
+                        text = "Email: dv.hamham@gmail.com",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Start
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Button(
+                        onClick = {
+                            val url = "https://www.paypal.com/paypalme/mohammedhamham"
+                            val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))
+                            context.startActivity(intent)
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                    ) {
+                        Text("Support via PayPal")
+                    }
                 }
             }
         }
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
-        )
+        Spacer(modifier = Modifier.height(10.dp))
     }
 }
 
@@ -945,3 +1013,16 @@ fun SettingDialogButton(setting: HookSystemSettingData) {
         )
     }
 }
+
+// Add this data class for boolean settings
+data class BooleanSettingData(
+    override val title: String,
+    override val description: String,
+    override val useValueState: State<Boolean>,
+    override val setUseValue: (Boolean) -> Unit,
+    override val label: String = title,
+    override val unit: String = "",
+    override val minValue: Float = 0f,
+    override val maxValue: Float = 1f,
+    override val step: Float = 1f
+) : SettingData()

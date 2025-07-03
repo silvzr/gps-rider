@@ -61,3 +61,5 @@ app/google-services.json
 *.temp
 *.keystore
 hamham.keystore
+
+GpsSetter/

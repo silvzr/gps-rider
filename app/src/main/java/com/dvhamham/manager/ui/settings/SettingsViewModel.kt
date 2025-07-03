@@ -239,6 +239,15 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     )
     val useSystemHook: StateFlow<Boolean> = _useSystemHookPreference.state
 
+    // Preferences for disabling night map mode
+    private val _disableNightMapModePreference = BooleanPreference(
+        false,
+        preferencesRepository.getDisableNightMapModeFlow(),
+        preferencesRepository::saveDisableNightMapMode,
+        viewModelScope
+    )
+    val disableNightMapMode: StateFlow<Boolean> = _disableNightMapModePreference.state
+
     // Setter methods for all preferences
     fun setUseAccuracy(value: Boolean) = _useAccuracyPreference.setValue(value)
     fun setAccuracy(value: Double) = _accuracyPreference.setValue(value)
@@ -257,4 +266,7 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     fun setUseSpeedAccuracy(value: Boolean) = _useSpeedAccuracyPreference.setValue(value)
     fun setSpeedAccuracy(value: Float) = _speedAccuracyPreference.setValue(value)
     fun setUseSystemHook(value: Boolean) = _useSystemHookPreference.setValue(value)
+    fun setDisableNightMapMode(value: Boolean) {
+        _disableNightMapModePreference.setValue(value)
+    }
 }

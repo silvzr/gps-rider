@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dvhamham.data.DEFAULT_MAP_ZOOM
 import com.dvhamham.data.USER_LOCATION_ZOOM
 import com.dvhamham.data.WORLD_MAP_ZOOM
@@ -31,6 +32,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng as GoogleLatLng
 import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.maps.android.compose.*
+import com.dvhamham.manager.ui.settings.SettingsViewModel
 
 @Composable
 fun MapViewContainer(
@@ -40,6 +42,8 @@ fun MapViewContainer(
     val themeManager = LocalThemeManager.current
     val uiState by mapViewModel.uiState.collectAsStateWithLifecycle()
     val isDarkTheme by themeManager.isDarkMode.collectAsState()
+    val settingsViewModel: SettingsViewModel = viewModel()
+    val disableNightMapMode by settingsViewModel.disableNightMapMode.collectAsState()
 
     // Extract state from uiState
     val loadingState = uiState.loadingState
@@ -78,10 +82,11 @@ fun MapViewContainer(
     if (loadingState == LoadingState.Loading) {
         LoadingSpinner()
     } else {
+        val mapShouldBeDark = if (disableNightMapMode) false else isDarkTheme
         DisplayGoogleMap(
             lastClickedGoogleLatLng = lastClickedGoogleLatLng,
             userGoogleLatLng = userGoogleLatLng,
-            isDarkTheme = isDarkTheme,
+            isDarkTheme = mapShouldBeDark,
             isPlaying = isPlaying,
             onMapClick = { googleLatLng ->
                 val latLng = LatLng(googleLatLng.latitude, googleLatLng.longitude)

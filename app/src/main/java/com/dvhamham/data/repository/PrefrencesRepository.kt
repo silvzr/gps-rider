@@ -60,6 +60,7 @@ class PreferencesRepository(private val context: Context) {
         val SPEED_ACCURACY = floatPreferencesKey(KEY_SPEED_ACCURACY)
         val FAVORITES = stringPreferencesKey(KEY_FAVORITES)
         val USE_SYSTEM_HOOK = booleanPreferencesKey("use_system_hook")
+        val DISABLE_NIGHT_MAP_MODE = booleanPreferencesKey("disable_night_map_mode")
     }
 
     // Generic helper for DataStore flows with error handling
@@ -632,5 +633,14 @@ class PreferencesRepository(private val context: Context) {
     }
     suspend fun saveUseSystemHook(use: Boolean) {
         savePreference(PreferenceKeys.USE_SYSTEM_HOOK, use, "use_system_hook", use)
+    }
+
+    // Disable Night Map Mode
+    fun getDisableNightMapModeFlow(): Flow<Boolean> {
+        return getPreferenceFlow(PreferenceKeys.DISABLE_NIGHT_MAP_MODE, false)
+    }
+
+    suspend fun saveDisableNightMapMode(disable: Boolean) {
+        savePreference(PreferenceKeys.DISABLE_NIGHT_MAP_MODE, disable, "disable_night_map_mode", disable)
     }
 }
