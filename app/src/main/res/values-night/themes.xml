@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.GPSRider" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Navigation bar color. -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Make status bar icons dark/light based on theme -->
+        <item name="android:windowLightStatusBar">false</item>
+        <!-- Remove window animations -->
+        <item name="android:windowAnimationStyle">@null</item>
+        <!-- Make app start immediately -->
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+</resources> 

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dvhamham">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+
+    <!-- Define custom permission for controlling fake location -->
+    <permission
+        android:name="com.dvhamham.permission.CONTROL_FAKE_LOCATION"
+        android:protectionLevel="normal" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GPSRider"
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="31">
+        
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAtkw6W7emWB2JdO5aDiNPRPDSooqQ0Nfs" />
+        
+        <activity
+            android:name=".manager.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:clearTaskOnLaunch="true"
+            android:finishOnTaskLaunch="false"
+            android:excludeFromRecents="false"
+            android:autoRemoveFromRecents="false"
+            android:theme="@style/Theme.GPSRider">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            
+            <!-- Intent Filters for External App Integration -->
+            <intent-filter>
+                <action android:name="com.dvhamham.START_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.STOP_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.TOGGLE_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.SET_CUSTOM_LOCATION" />
+                <action android:name="com.dvhamham.SET_FAVORITE_LOCATION" />
+                <action android:name="com.dvhamham.GET_STATUS" />
+                <action android:name="com.dvhamham.GET_CURRENT_LOCATION" />
+                <action android:name="com.dvhamham.SET_ACCURACY" />
+                <action android:name="com.dvhamham.SET_ALTITUDE" />
+                <action android:name="com.dvhamham.SET_SPEED" />
+                <action android:name="com.dvhamham.RANDOMIZE_LOCATION" />
+                <action android:name="com.dvhamham.CREATE_FAVORITE" />
+                <action android:name="com.dvhamham.DELETE_FAVORITE" />
+                <action android:name="com.dvhamham.GET_FAVORITES" />
+                <action android:name="com.dvhamham.START_TIMED_LOCATION" />
+                <action android:name="com.dvhamham.STOP_TIMED_LOCATION" />
+                <action android:name="com.dvhamham.LOAD_PATH_FILE" />
+                <action android:name="com.dvhamham.SET_HEADING" />
+                <action android:name="com.dvhamham.SET_BEARING" />
+                <action android:name="com.dvhamham.GET_LOCATION_HISTORY" />
+                <action android:name="com.dvhamham.CLEAR_LOCATION_HISTORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Intent Service for Background Operations -->
+        <service
+            android:name=".manager.IntentService"
+            android:exported="true"
+            android:foregroundServiceType="location">
+            <intent-filter>
+                <action android:name="com.dvhamham.START_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.STOP_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.TOGGLE_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.SET_CUSTOM_LOCATION" />
+                <action android:name="com.dvhamham.SET_FAVORITE_LOCATION" />
+                <action android:name="com.dvhamham.GET_STATUS" />
+                <action android:name="com.dvhamham.GET_CURRENT_LOCATION" />
+                <action android:name="com.dvhamham.SET_ACCURACY" />
+                <action android:name="com.dvhamham.SET_ALTITUDE" />
+                <action android:name="com.dvhamham.SET_SPEED" />
+                <action android:name="com.dvhamham.RANDOMIZE_LOCATION" />
+                <action android:name="com.dvhamham.CREATE_FAVORITE" />
+                <action android:name="com.dvhamham.DELETE_FAVORITE" />
+                <action android:name="com.dvhamham.GET_FAVORITES" />
+                <action android:name="com.dvhamham.START_TIMED_LOCATION" />
+                <action android:name="com.dvhamham.STOP_TIMED_LOCATION" />
+                <action android:name="com.dvhamham.LOAD_PATH_FILE" />
+                <action android:name="com.dvhamham.SET_HEADING" />
+                <action android:name="com.dvhamham.SET_BEARING" />
+                <action android:name="com.dvhamham.GET_LOCATION_HISTORY" />
+                <action android:name="com.dvhamham.CLEAR_LOCATION_HISTORY" />
+            </intent-filter>
+        </service>
+
+        <!-- Broadcast Receiver for External App Integration -->
+        <receiver
+            android:name=".manager.GPSRiderBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.dvhamham.START_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.STOP_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.TOGGLE_FAKE_LOCATION" />
+                <action android:name="com.dvhamham.SET_CUSTOM_LOCATION" />
+                <action android:name="com.dvhamham.SET_FAVORITE_LOCATION" />
+                <action android:name="com.dvhamham.GET_STATUS" />
+                <action android:name="com.dvhamham.GET_CURRENT_LOCATION" />
+                <action android:name="com.dvhamham.SET_ACCURACY" />
+                <action android:name="com.dvhamham.SET_ALTITUDE" />
+                <action android:name="com.dvhamham.SET_SPEED" />
+                <action android:name="com.dvhamham.RANDOMIZE_LOCATION" />
+                <action android:name="com.dvhamham.CREATE_FAVORITE" />
+                <action android:name="com.dvhamham.DELETE_FAVORITE" />
+                <action android:name="com.dvhamham.GET_FAVORITES" />
+                <action android:name="com.dvhamham.START_TIMED_LOCATION" />
+                <action android:name="com.dvhamham.STOP_TIMED_LOCATION" />
+                <action android:name="com.dvhamham.LOAD_PATH_FILE" />
+                <action android:name="com.dvhamham.SET_HEADING" />
+                <action android:name="com.dvhamham.SET_BEARING" />
+                <action android:name="com.dvhamham.GET_LOCATION_HISTORY" />
+                <action android:name="com.dvhamham.CLEAR_LOCATION_HISTORY" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Whether to be an Xposed module (specify true) -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true"/>
+        <!-- Introduction to the module (shown in the framework) -->
+        <meta-data
+            android:name="xposeddescription"
+            android:value="GPS Rider" />
+        <!-- The minimum supported Api version of the module is usually 54. -->
+        <meta-data
+            android:name="xposedminversion"
+            android:value="93"/>
+        <!-- Module Scopes -->
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposedscope"/>
+
+        <!-- Indicate usage of new XSharedPreferences -->
+        <meta-data
+            android:name="xposedsharedprefs"
+            android:value="true" />
+
+    </application>
+
+</manifest>
