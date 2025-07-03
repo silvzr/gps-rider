@@ -101,9 +101,9 @@ You can control GPS Rider from other apps using Intents:
 
 - **Name:** Mohammed hamham
 - **Solo Developer:** I worked alone on this project and put a lot of effort into it.
-- **PayPal for support:** [dv.hamham@gmail.com](mailto:dv.hamham@gmail.com)
+- **PayPal for support:** [dv.hamham@gmail.com](https://www.paypal.com/paypalme/mohammedhamham)
 
-> If you liked or benefited from this project, you can support me via PayPal: [dv.hamham@gmail.com](mailto:dv.hamham@gmail.com)
+> If you liked or benefited from this project, you can support me via PayPal: [dv.hamham@gmail.com](https://www.paypal.com/paypalme/mohammedhamham)
 
 ---
 
