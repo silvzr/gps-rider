@@ -33,7 +33,7 @@
 
 ## 🏁 Requirements
 
-- **Android 11 (API 30) or higher** (Tested on android 16) (minSdk = 30, targetSdk = 34)
+- **Android 8 (API 26) or higher** (Tested up to Android 16) (minSdk = 26, targetSdk = 35)
 - **Rooted device**
 - **Xposed Framework** (LSPosed or EdXposed recommended)
 
@@ -59,7 +59,7 @@
 ## 🏗️ Building from Source
 
 ```sh
-git clone https://github.com/hamham/gpsrider.git
+git clone https://github.com/dvhamham/gps-rider.git
 cd gps-rider
 ./gradlew :app:assembleDebug
 adb install -r app/build/outputs/apk/debug/app-debug.apk
@@ -99,14 +99,29 @@ You can control GPS Rider from other apps using Intents:
 
 ## 👨‍💻 Author
 
-- **Name:** Mohammed (hamham)
+- **Name:** Mohammed hamham
 - **Solo Developer:** I worked alone on this project and put a lot of effort into it.
 - **PayPal for support:** [dv.hamham@gmail.com](mailto:dv.hamham@gmail.com)
 
-> If you liked or benefited from this project, you can support me via PayPal: dv.hamham@gmail.com
+> If you liked or benefited from this project, you can support me via PayPal: [dv.hamham@gmail.com](mailto:dv.hamham@gmail.com)
 
 ---
 
 ## 📋 License
 
 This project is licensed under the MIT License. 
+
+---
+
+## 🌟 About the Developer
+
+> **Full Name:** Mohammed Hamham  
+> **Email:** [dv.hamham@gmail.com](mailto:dv.hamham@gmail.com)  
+> **Location:** Morocco  
+> **Role:** Full Stack Developer
+
+Mohammed Hamham is a passionate full stack developer from Morocco, dedicated to building innovative solutions and delivering high-quality software. As a solo developer, he has poured his expertise and creativity into this project. If you appreciate his work and would like to support future development, you can do so via PayPal:
+
+[PayPal for support](https://www.paypal.com/paypalme/mohammedhamham)
+
+---

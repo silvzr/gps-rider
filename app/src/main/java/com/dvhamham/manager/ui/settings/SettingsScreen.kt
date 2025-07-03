@@ -32,6 +32,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import com.dvhamham.manager.ui.theme.ThemeMode
 import com.dvhamham.manager.ui.theme.LocalThemeManager
+import androidx.compose.ui.platform.LocalContext
 
 // Dimension constants
 private object Dimensions {
@@ -241,6 +242,70 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(Dimensions.SPACING_MEDIUM))
         }
         Spacer(modifier = Modifier.height(Dimensions.SPACING_LARGE))
+
+        // Developer Bio Section
+        val context = LocalContext.current
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 32.dp, bottom = 8.dp),
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f)
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "About me",
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(bottom = 10.dp)
+                )
+                Text(
+                    text = "Mohammed Hamham",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text(
+                    text = "Full Stack Developer from Morocco",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.padding(bottom = 8.dp).fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    text = "Email: dv.hamham@gmail.com",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    modifier = Modifier.padding(bottom = 8.dp).fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+                Button(
+                    onClick = {
+                        // Open PayPal support link
+                        val url = "https://www.paypal.com/paypalme/mohammedhamham"
+                        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))
+                        context.startActivity(intent)
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+                ) {
+                    Text("Support via PayPal")
+                }
+            }
+        }
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp),
+            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+        )
     }
 }
 

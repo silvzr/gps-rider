@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.dvhamham"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.dvhamham"
-        minSdk = 30
-        targetSdk = 34
+        minSdk = 26
+        targetSdk = 35
         versionCode = 3
         versionName = "1.0.2"
 
