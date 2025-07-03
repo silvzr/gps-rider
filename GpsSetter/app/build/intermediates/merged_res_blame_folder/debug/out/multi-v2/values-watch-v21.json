@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.android1500.gpssetter.app-mergeDebugResources-53:/values-watch-v21/values-watch-v21.xml",
+            "map": [
+                {
+                    "source": "/Users/mohammed/.gradle/caches/8.10/transforms/1bcf30c7228c7772810a7f5f96616c2c/transformed/appcompat-1.7.0-alpha01/res/values-watch-v21/values-watch-v21.xml",
+                    "from": {
+                        "startLines": "2,6,10",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,271,499",
+                        "endLines": "5,9,13",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "266,494,724"
+                    }
+                }
+            ]
+        }
+    ]
+}

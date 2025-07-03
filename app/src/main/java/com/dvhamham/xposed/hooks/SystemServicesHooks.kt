@@ -33,9 +33,12 @@ class SystemServicesHooks(val appLpparam: LoadPackageParam) {
                         override fun beforeHookedMethod(param: MethodHookParam) {
                             XposedBridge.log("$tag [SystemHook] Entered method getLastLocation(locationRequest, packageName)")
                             XposedBridge.log("\t Request comes from: ${param.args[1] as String}")
-                            val fakeLocation = LocationUtil.createFakeLocation()
-                            param.result = fakeLocation
-                            XposedBridge.log("\t Modified to: $fakeLocation (original method not executed)")
+                            com.dvhamham.xposed.utils.PreferencesUtil.reloadPrefs()
+                            if (com.dvhamham.xposed.utils.PreferencesUtil.getIsPlaying() == true) {
+                                val fakeLocation = com.dvhamham.xposed.utils.LocationUtil.createFakeLocation()
+                                param.result = fakeLocation
+                                XposedBridge.log("\t Modified to: $fakeLocation (original method not executed)")
+                            }
                         }
                     })
             } else {
@@ -64,9 +67,12 @@ class SystemServicesHooks(val appLpparam: LoadPackageParam) {
                 object : XC_MethodHook() {
                     override fun beforeHookedMethod(param: MethodHookParam) {
                         XposedBridge.log("$tag [SystemHook] Entered method callLocationChangedLocked(location)")
-                        val fakeLocation = LocationUtil.createFakeLocation(param.args[0] as? Location)
-                        param.args[0] = fakeLocation
-                        XposedBridge.log("\t Modified to: $fakeLocation")
+                        com.dvhamham.xposed.utils.PreferencesUtil.reloadPrefs()
+                        if (com.dvhamham.xposed.utils.PreferencesUtil.getIsPlaying() == true) {
+                            val fakeLocation = com.dvhamham.xposed.utils.LocationUtil.createFakeLocation(param.args[0] as? Location)
+                            param.args[0] = fakeLocation
+                            XposedBridge.log("\t Modified to: $fakeLocation")
+                        }
                     }
                 })
 

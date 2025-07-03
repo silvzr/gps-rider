@@ -46,20 +46,15 @@ class MainHook : IXposedHookLoadPackage {
             return
         }
 
-        // Check if fake location is enabled
-        val isPlaying = PreferencesUtil.getIsPlaying()
-        XposedBridge.log("$tag Is playing: $isPlaying")
-        
-        // If not playing or null, do not proceed with hooking
-        if (isPlaying != true) {
-            XposedBridge.log("$tag Fake location not enabled, skipping hooks")
-            return
-        }
-
-        // Hook system services if user asked for system wide hooks
+        // Hook system services فقط إذا كان useSystemHook مفعل
         if (lpparam.packageName == "android") {
-            XposedBridge.log("$tag Hooking system services")
-            systemServicesHooks = SystemServicesHooks(lpparam).also { it.initHooks() }
+            com.dvhamham.xposed.utils.PreferencesUtil.reloadPrefs()
+            if (com.dvhamham.xposed.utils.PreferencesUtil.getUseSystemHook() == true) {
+                XposedBridge.log("$tag Hooking system services (system_server) [System Hook ENABLED]")
+                systemServicesHooks = SystemServicesHooks(lpparam).also { it.initHooks() }
+            } else {
+                XposedBridge.log("$tag System hook is DISABLED by user preference.")
+            }
         }
 
         initHookingLogic(lpparam)

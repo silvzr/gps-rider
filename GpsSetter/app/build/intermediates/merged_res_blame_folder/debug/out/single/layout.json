@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.android1500.gpssetter.app-mergeDebugResources-54:/layout/dialog_layout.xml",
+        "source": "com.android1500.gpssetter.app-main-57:/layout/dialog_layout.xml"
+    },
+    {
+        "merged": "com.android1500.gpssetter.app-mergeDebugResources-54:/layout/settings_activity.xml",
+        "source": "com.android1500.gpssetter.app-main-57:/layout/settings_activity.xml"
+    },
+    {
+        "merged": "com.android1500.gpssetter.app-mergeDebugResources-54:/layout/fav_items.xml",
+        "source": "com.android1500.gpssetter.app-main-57:/layout/fav_items.xml"
+    },
+    {
+        "merged": "com.android1500.gpssetter.app-mergeDebugResources-54:/layout/fav.xml",
+        "source": "com.android1500.gpssetter.app-main-57:/layout/fav.xml"
+    },
+    {
+        "merged": "com.android1500.gpssetter.app-mergeDebugResources-54:/layout/activity_map.xml",
+        "source": "com.android1500.gpssetter.app-main-57:/layout/activity_map.xml"
+    },
+    {
+        "merged": "com.android1500.gpssetter.app-mergeDebugResources-54:/layout/map_container.xml",
+        "source": "com.android1500.gpssetter.app-main-57:/layout/map_container.xml"
+    }
+]

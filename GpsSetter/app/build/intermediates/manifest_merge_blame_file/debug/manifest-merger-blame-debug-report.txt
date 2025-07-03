@@ -1,0 +1,220 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.android1500.gpssetter"
+4    android:versionCode="1210"
+5    android:versionName="1.2.10" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="27"
+8-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+11-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:5:5-79
+11-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:5:22-76
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:6:5-79
+12-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:7:5-67
+13-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:7:22-64
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:8:5-80
+14-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:8:22-77
+15    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+15-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:9:5-83
+15-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:9:22-80
+16
+17    <uses-feature
+17-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:26:5-28:35
+18        android:glEsVersion="0x00020000"
+18-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:27:9-41
+19        android:required="true" />
+19-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:28:9-32
+20
+21    <queries>
+21-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:30:5-34:15
+22
+23        <!-- Needs to be explicitly declared on Android R+ -->
+24        <package android:name="com.google.android.apps.maps" />
+24-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:9-64
+24-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:33:18-61
+25    </queries>
+26
+27    <permission
+27-->[androidx.core:core:1.9.0] /Users/mohammed/.gradle/caches/8.10/transforms/c9851dc1b4642b05db6ba63b07ad2e32/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+28        android:name="com.android1500.gpssetter.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+28-->[androidx.core:core:1.9.0] /Users/mohammed/.gradle/caches/8.10/transforms/c9851dc1b4642b05db6ba63b07ad2e32/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+29        android:protectionLevel="signature" />
+29-->[androidx.core:core:1.9.0] /Users/mohammed/.gradle/caches/8.10/transforms/c9851dc1b4642b05db6ba63b07ad2e32/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+30
+31    <uses-permission android:name="com.android1500.gpssetter.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+31-->[androidx.core:core:1.9.0] /Users/mohammed/.gradle/caches/8.10/transforms/c9851dc1b4642b05db6ba63b07ad2e32/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+31-->[androidx.core:core:1.9.0] /Users/mohammed/.gradle/caches/8.10/transforms/c9851dc1b4642b05db6ba63b07ad2e32/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+32
+33    <application
+33-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:12:5-63:19
+34        android:name="com.android1500.gpssetter.App"
+34-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:13:9-28
+35        android:allowBackup="true"
+35-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:14:9-35
+36        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+36-->[androidx.core:core:1.9.0] /Users/mohammed/.gradle/caches/8.10/transforms/c9851dc1b4642b05db6ba63b07ad2e32/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+37        android:debuggable="true"
+38        android:extractNativeLibs="false"
+39        android:icon="@mipmap/ic_launcher"
+39-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:15:9-43
+40        android:label="@string/app_name"
+40-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:16:9-41
+41        android:roundIcon="@mipmap/ic_launcher"
+41-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:17:9-48
+42        android:supportsRtl="true"
+42-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:18:9-35
+43        android:testOnly="true"
+44        android:theme="@style/Theme.GPSSetter" >
+44-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:19:9-47
+45        <activity
+45-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:21:9-25:20
+46            android:name="com.android1500.gpssetter.ui.SettingsActivity"
+46-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:22:13-48
+47            android:exported="false"
+47-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:23:13-37
+48            android:label="@string/title_activity_settings" >
+48-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:24:13-60
+49        </activity>
+50        <activity
+50-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:26:9-34:20
+51            android:name="com.android1500.gpssetter.ui.MapActivity"
+51-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:27:13-43
+52            android:exported="true" >
+52-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:28:13-36
+53            <intent-filter>
+53-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:29:13-33:29
+54                <action android:name="android.intent.action.MAIN" />
+54-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:30:17-69
+54-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:30:25-66
+55
+56                <category android:name="android.intent.category.LAUNCHER" />
+56-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:32:17-77
+56-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:32:27-74
+57            </intent-filter>
+58        </activity>
+59
+60        <meta-data
+61            android:name="com.google.android.geo.API_KEY"
+61-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:38:13-58
+62            android:value="AIzaSyA_Mv3-1Yq-0aAfoovi3oJMVJZLuuyTCxY" />
+62-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:39:13-44
+63
+64        <provider
+65            android:name="androidx.core.content.FileProvider"
+65-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:42:13-62
+66            android:authorities="com.android1500.gpssetter.provider"
+66-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:43:13-60
+67            android:exported="false"
+67-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:44:13-37
+68            android:grantUriPermissions="true" >
+68-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:45:13-47
+69            <meta-data
+69-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:46:13-48:58
+70                android:name="android.support.FILE_PROVIDER_PATHS"
+70-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:47:17-67
+71                android:resource="@xml/provider_paths" />
+71-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:48:17-55
+72        </provider>
+73
+74        <meta-data
+74-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:51:9-53:36
+75            android:name="xposedmodule"
+75-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:52:13-40
+76            android:value="true" />
+76-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:53:13-33
+77        <meta-data
+77-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:54:9-56:51
+78            android:name="xposeddescription"
+78-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:55:13-45
+79            android:value="@string/xposed_desc" />
+79-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:56:13-48
+80        <meta-data
+80-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:57:9-59:34
+81            android:name="xposedminversion"
+81-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:58:13-44
+82            android:value="93" />
+82-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:59:13-31
+83        <meta-data
+83-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:60:9-62:36
+84            android:name="xposedsharedprefs"
+84-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:61:13-45
+85            android:value="true" />
+85-->/Users/mohammed/Desktop/GpsSetter/app/src/main/AndroidManifest.xml:62:13-33
+86        <!-- Needs to be explicitly declared on P+ -->
+87        <uses-library
+87-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:39:9-41:40
+88            android:name="org.apache.http.legacy"
+88-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:40:13-50
+89            android:required="false" />
+89-->[com.google.android.gms:play-services-maps:18.1.0] /Users/mohammed/.gradle/caches/8.10/transforms/26420c8a5a7ce7f64a8355e5a2184d48/transformed/jetified-play-services-maps-18.1.0/AndroidManifest.xml:41:13-37
+90
+91        <activity
+91-->[com.google.android.gms:play-services-base:18.0.1] /Users/mohammed/.gradle/caches/8.10/transforms/81f25e40a3535c67cdd3a56a81f2919e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:9-22:45
+92            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+92-->[com.google.android.gms:play-services-base:18.0.1] /Users/mohammed/.gradle/caches/8.10/transforms/81f25e40a3535c67cdd3a56a81f2919e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:20:19-85
+93            android:exported="false"
+93-->[com.google.android.gms:play-services-base:18.0.1] /Users/mohammed/.gradle/caches/8.10/transforms/81f25e40a3535c67cdd3a56a81f2919e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:22:19-43
+94            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+94-->[com.google.android.gms:play-services-base:18.0.1] /Users/mohammed/.gradle/caches/8.10/transforms/81f25e40a3535c67cdd3a56a81f2919e/transformed/jetified-play-services-base-18.0.1/AndroidManifest.xml:21:19-78
+95
+96        <meta-data
+96-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/825d69a930592939219fff78a1e88592/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+97            android:name="com.google.android.gms.version"
+97-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/825d69a930592939219fff78a1e88592/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+98            android:value="@integer/google_play_services_version" />
+98-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/825d69a930592939219fff78a1e88592/transformed/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+99
+100        <provider
+100-->[androidx.emoji2:emoji2:1.2.0] /Users/mohammed/.gradle/caches/8.10/transforms/82f9cc062886d9c894a3ebe54c5b7d99/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+101            android:name="androidx.startup.InitializationProvider"
+101-->[androidx.emoji2:emoji2:1.2.0] /Users/mohammed/.gradle/caches/8.10/transforms/82f9cc062886d9c894a3ebe54c5b7d99/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+102            android:authorities="com.android1500.gpssetter.androidx-startup"
+102-->[androidx.emoji2:emoji2:1.2.0] /Users/mohammed/.gradle/caches/8.10/transforms/82f9cc062886d9c894a3ebe54c5b7d99/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+103            android:exported="false" >
+103-->[androidx.emoji2:emoji2:1.2.0] /Users/mohammed/.gradle/caches/8.10/transforms/82f9cc062886d9c894a3ebe54c5b7d99/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+104            <meta-data
+104-->[androidx.emoji2:emoji2:1.2.0] /Users/mohammed/.gradle/caches/8.10/transforms/82f9cc062886d9c894a3ebe54c5b7d99/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+105                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+105-->[androidx.emoji2:emoji2:1.2.0] /Users/mohammed/.gradle/caches/8.10/transforms/82f9cc062886d9c894a3ebe54c5b7d99/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+106                android:value="androidx.startup" />
+106-->[androidx.emoji2:emoji2:1.2.0] /Users/mohammed/.gradle/caches/8.10/transforms/82f9cc062886d9c894a3ebe54c5b7d99/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+107            <meta-data
+107-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mohammed/.gradle/caches/8.10/transforms/4a66b3ca9986cfea57319f0d8d52b97b/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+108                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+108-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mohammed/.gradle/caches/8.10/transforms/4a66b3ca9986cfea57319f0d8d52b97b/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+109                android:value="androidx.startup" />
+109-->[androidx.lifecycle:lifecycle-process:2.4.1] /Users/mohammed/.gradle/caches/8.10/transforms/4a66b3ca9986cfea57319f0d8d52b97b/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+110        </provider>
+111
+112        <uses-library
+112-->[androidx.window:window:1.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/854780bdcc2618e45874a572272ada6a/transformed/jetified-window-1.0.0/AndroidManifest.xml:25:9-27:40
+113            android:name="androidx.window.extensions"
+113-->[androidx.window:window:1.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/854780bdcc2618e45874a572272ada6a/transformed/jetified-window-1.0.0/AndroidManifest.xml:26:13-54
+114            android:required="false" />
+114-->[androidx.window:window:1.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/854780bdcc2618e45874a572272ada6a/transformed/jetified-window-1.0.0/AndroidManifest.xml:27:13-37
+115        <uses-library
+115-->[androidx.window:window:1.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/854780bdcc2618e45874a572272ada6a/transformed/jetified-window-1.0.0/AndroidManifest.xml:28:9-30:40
+116            android:name="androidx.window.sidecar"
+116-->[androidx.window:window:1.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/854780bdcc2618e45874a572272ada6a/transformed/jetified-window-1.0.0/AndroidManifest.xml:29:13-51
+117            android:required="false" />
+117-->[androidx.window:window:1.0.0] /Users/mohammed/.gradle/caches/8.10/transforms/854780bdcc2618e45874a572272ada6a/transformed/jetified-window-1.0.0/AndroidManifest.xml:30:13-37
+118
+119        <service
+119-->[androidx.room:room-runtime:2.5.0-beta01] /Users/mohammed/.gradle/caches/8.10/transforms/fed38c22c5fb00b8580c0930d96f09e0/transformed/room-runtime-2.5.0-beta01/AndroidManifest.xml:24:9-28:63
+120            android:name="androidx.room.MultiInstanceInvalidationService"
+120-->[androidx.room:room-runtime:2.5.0-beta01] /Users/mohammed/.gradle/caches/8.10/transforms/fed38c22c5fb00b8580c0930d96f09e0/transformed/room-runtime-2.5.0-beta01/AndroidManifest.xml:25:13-74
+121            android:directBootAware="true"
+121-->[androidx.room:room-runtime:2.5.0-beta01] /Users/mohammed/.gradle/caches/8.10/transforms/fed38c22c5fb00b8580c0930d96f09e0/transformed/room-runtime-2.5.0-beta01/AndroidManifest.xml:26:13-43
+122            android:exported="false" />
+122-->[androidx.room:room-runtime:2.5.0-beta01] /Users/mohammed/.gradle/caches/8.10/transforms/fed38c22c5fb00b8580c0930d96f09e0/transformed/room-runtime-2.5.0-beta01/AndroidManifest.xml:27:13-37
+123    </application>
+124
+125</manifest>

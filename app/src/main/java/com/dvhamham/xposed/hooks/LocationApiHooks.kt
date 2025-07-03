@@ -31,6 +31,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getLatitude",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true) {
                             LocationUtil.updateLocation()
                             param.result = LocationUtil.latitude
@@ -44,6 +45,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getLongitude",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true) {
                             LocationUtil.updateLocation()
                             param.result =  LocationUtil.longitude
@@ -57,6 +59,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getAccuracy",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseAccuracy() == true) {
                             LocationUtil.updateLocation()
                             param.result =  LocationUtil.accuracy
@@ -70,6 +73,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getAltitude",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseAltitude() == true) {
                             LocationUtil.updateLocation()
                             param.result =  LocationUtil.altitude
@@ -83,6 +87,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getVerticalAccuracyMeters",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseVerticalAccuracy() == true) {
                             LocationUtil.updateLocation()
                             param.result = LocationUtil.verticalAccuracy
@@ -96,6 +101,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getSpeed",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseSpeed() == true) {
                             LocationUtil.updateLocation()
                             param.result = LocationUtil.speed
@@ -109,6 +115,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getSpeedAccuracyMetersPerSecond",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseSpeedAccuracy() == true) {
                             LocationUtil.updateLocation()
                             param.result = LocationUtil.speedAccuracy
@@ -123,6 +130,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                     "getMslAltitudeMeters",
                     object : XC_MethodHook() {
                         override fun afterHookedMethod(param: MethodHookParam) {
+                            PreferencesUtil.reloadPrefs()
                             if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseMeanSeaLevel() == true) {
                                 LocationUtil.updateLocation()
                                 param.result = LocationUtil.meanSeaLevel
@@ -137,6 +145,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                     "getMslAltitudeAccuracyMeters",
                     object : XC_MethodHook() {
                         override fun afterHookedMethod(param: MethodHookParam) {
+                            PreferencesUtil.reloadPrefs()
                             if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseMeanSeaLevelAccuracy() == true) {
                                 LocationUtil.updateLocation()
                                 param.result = LocationUtil.meanSeaLevelAccuracy
@@ -163,6 +172,7 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 String::class.java,
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
+                        PreferencesUtil.reloadPrefs()
                         if (PreferencesUtil.getIsPlaying() == true) {
                             XposedBridge.log("$tag Leaving method getLastKnownLocation(provider)")
                             XposedBridge.log("\t Original location: "+ (param.result as? Location))

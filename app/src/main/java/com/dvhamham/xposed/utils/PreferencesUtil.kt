@@ -87,6 +87,14 @@ object PreferencesUtil {
         return getPreference<Float>(KEY_SPEED_ACCURACY)
     }
 
+    fun getUseSystemHook(): Boolean? {
+        return getPreference<Boolean>("use_system_hook")
+    }
+
+    fun reloadPrefs() {
+        preferences.reload()
+    }
+
     private inline fun <reified T> getPreference(key: String): T? {
         preferences.reload()
         return when (T::class) {
