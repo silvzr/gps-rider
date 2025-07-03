@@ -25,8 +25,23 @@ class MainHook : IXposedHookLoadPackage {
     override fun handleLoadPackage(lpparam: LoadPackageParam) {
         XposedBridge.log("$tag Loading package: ${lpparam.packageName}")
         
-        // Avoid hooking own app to prevent recursion
+        // --- HOOK XposedChecker.isModuleActive() in main app ---
         if (lpparam.packageName == MANAGER_APP_PACKAGE_NAME) {
+            try {
+                XposedHelpers.findAndHookMethod(
+                    "com.dvhamham.manager.XposedChecker",
+                    lpparam.classLoader,
+                    "isModuleActive",
+                    object : de.robv.android.xposed.XC_MethodReplacement() {
+                        override fun replaceHookedMethod(param: MethodHookParam): Any {
+                            XposedBridge.log("$tag XposedChecker.isModuleActive() hooked: returning true")
+                            return true
+                        }
+                    }
+                )
+            } catch (e: Exception) {
+                XposedBridge.log("$tag Failed to hook XposedChecker.isModuleActive: ${e.message}")
+            }
             XposedBridge.log("$tag Skipping own app: ${lpparam.packageName}")
             return
         }

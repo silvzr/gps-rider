@@ -31,6 +31,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import java.net.HttpURLConnection
+import java.net.URL
+import org.json.JSONObject
+import com.dvhamham.BuildConfig
 
 class MainActivity : ComponentActivity() {
     
@@ -72,7 +84,47 @@ class MainActivity : ComponentActivity() {
             // --- LSPosed Module Check ---
             var showModuleDialog by remember { mutableStateOf(false) }
             val isModuleActive = XposedChecker.isModuleActive()
-            if (!isModuleActive) showModuleDialog = true
+            showModuleDialog = !isModuleActive
+            
+            // --- Update Check State ---
+            var showMinorUpdateDialog by remember { mutableStateOf(false) }
+            var showMajorUpdateDialog by remember { mutableStateOf(false) }
+            var updateDownloadUrl by remember { mutableStateOf("") }
+            var updateVersion by remember { mutableStateOf("") }
+            val coroutineScope = rememberCoroutineScope()
+
+            LaunchedEffect(Unit) {
+                coroutineScope.launch {
+                    try {
+                        val url = URL("https://raw.githubusercontent.com/dvhamham/gps-rider/main/update.json")
+                        val connection = withContext(Dispatchers.IO) { url.openConnection() as HttpURLConnection }
+                        connection.connectTimeout = 3000
+                        connection.readTimeout = 3000
+                        connection.requestMethod = "GET"
+                        val response = withContext(Dispatchers.IO) {
+                            connection.inputStream.bufferedReader().use { it.readText() }
+                        }
+                        val json = JSONObject(response)
+                        val status = json.optBoolean("status", false)
+                        val remoteVersion = json.optString("version", "")
+                        val downloadUrl = json.optString("download", "")
+                        val currentVersion = BuildConfig.VERSION_NAME
+                        updateDownloadUrl = downloadUrl
+                        updateVersion = remoteVersion
+                        if (status && remoteVersion.isNotEmpty() && remoteVersion != currentVersion) {
+                            val remoteParts = remoteVersion.split(".").mapNotNull { it.toIntOrNull() }
+                            val currentParts = currentVersion.split(".").mapNotNull { it.toIntOrNull() }
+                            if (remoteParts.size == 3 && currentParts.size == 3) {
+                                if (remoteParts[0] > currentParts[0]) {
+                                    showMajorUpdateDialog = true
+                                } else if (remoteParts[0] == currentParts[0] && remoteParts[1] > currentParts[1]) {
+                                    showMinorUpdateDialog = true
+                                }
+                            }
+                        }
+                    } catch (_: Exception) {}
+                }
+            }
             
             CompositionLocalProvider(LocalThemeManager provides themeManager) {
                 GPSRiderTheme(darkTheme = isDarkMode) {
@@ -101,6 +153,41 @@ class MainActivity : ComponentActivity() {
                         )
                         if (showModuleDialog) {
                             ModuleNotActiveDialog()
+                        }
+                        if (showMinorUpdateDialog) {
+                            AlertDialog(
+                                onDismissRequest = { showMinorUpdateDialog = false },
+                                title = { Text("Update Available") },
+                                text = { Text("A new minor update ($updateVersion) is available. Would you like to update?") },
+                                confirmButton = {
+                                    Button(onClick = {
+                                        showMinorUpdateDialog = false
+                                        if (updateDownloadUrl.isNotEmpty()) {
+                                            val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(updateDownloadUrl))
+                                            startActivity(intent)
+                                        }
+                                    }) { Text("Update") }
+                                },
+                                dismissButton = {
+                                    Button(onClick = { showMinorUpdateDialog = false }) { Text("Later") }
+                                }
+                            )
+                        }
+                        if (showMajorUpdateDialog) {
+                            AlertDialog(
+                                onDismissRequest = {}, // Not dismissible
+                                title = { Text("Major Update Required") },
+                                text = { Text("A major update ($updateVersion) is required to continue using the app.") },
+                                confirmButton = {
+                                    Button(onClick = {
+                                        if (updateDownloadUrl.isNotEmpty()) {
+                                            val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(updateDownloadUrl))
+                                            startActivity(intent)
+                                        }
+                                    }) { Text("Update Now") }
+                                },
+                                dismissButton = null
+                            )
                         }
                     }
                 }
