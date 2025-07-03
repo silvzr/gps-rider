@@ -99,11 +99,19 @@ You can control GPS Rider from other apps using Intents:
 
 ## 👨‍💻 Author
 
-- **Name:** Mohammed hamham
-- **Solo Developer:** I worked alone on this project and put a lot of effort into it.
-- **PayPal for support:** [dv.hamham@gmail.com](https://www.paypal.com/paypalme/mohammedhamham)
+> **Name:** Mohammed Hamham  
+>
+> **Role:** Full Stack Developer
+>
+> **Location:** Morocco  
+>
+> **PayPal for support:** [dv.hamham@gmail.com](https://www.paypal.com/paypalme/mohammedhamham)
 
-> If you liked or benefited from this project, you can support me via PayPal: [dv.hamham@gmail.com](https://www.paypal.com/paypalme/mohammedhamham)
+
+
+**If you liked or benefited from this project, you can support me.**
+
+
 
 ---
 
@@ -111,17 +119,5 @@ You can control GPS Rider from other apps using Intents:
 
 This project is licensed under the MIT License. 
 
----
-
-## 🌟 About the Developer
-
-> **Full Name:** Mohammed Hamham  
-> **Email:** [dv.hamham@gmail.com](mailto:dv.hamham@gmail.com)  
-> **Location:** Morocco  
-> **Role:** Full Stack Developer
-
-Mohammed Hamham is a passionate full stack developer from Morocco, dedicated to building innovative solutions and delivering high-quality software. As a solo developer, he has poured his expertise and creativity into this project. If you appreciate his work and would like to support future development, you can do so via PayPal:
-
-[PayPal for support](https://www.paypal.com/paypalme/mohammedhamham)
 
 ---
