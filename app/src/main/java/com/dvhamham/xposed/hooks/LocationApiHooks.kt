@@ -31,11 +31,11 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getLatitude",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        LocationUtil.updateLocation()
-                        XposedBridge.log("$tag Leaving method getLatitude()")
-                        XposedBridge.log("\t Original latitude: ${param.result as Double}")
-                        param.result = LocationUtil.latitude
-                        XposedBridge.log("\t Modified to: ${LocationUtil.latitude}")
+                        if (PreferencesUtil.getIsPlaying() == true) {
+                            LocationUtil.updateLocation()
+                            param.result = LocationUtil.latitude
+                        }
+                        // else: leave param.result as is (real location)
                     }
                 })
 
@@ -44,11 +44,11 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getLongitude",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        LocationUtil.updateLocation()
-                        XposedBridge.log("$tag Leaving method getLongitude()")
-                        XposedBridge.log("\t Original longitude: ${param.result as Double}")
-                        param.result =  LocationUtil.longitude
-                        XposedBridge.log("\t Modified to: ${LocationUtil.longitude}")
+                        if (PreferencesUtil.getIsPlaying() == true) {
+                            LocationUtil.updateLocation()
+                            param.result =  LocationUtil.longitude
+                        }
+                        // else: leave param.result as is (real location)
                     }
                 })
 
@@ -57,31 +57,25 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getAccuracy",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        LocationUtil.updateLocation()
-                        XposedBridge.log("$tag Leaving method getAccuracy()")
-                        XposedBridge.log("\t Original accuracy: ${param.result as Float}")
-                        if (PreferencesUtil.getUseAccuracy() == true) {
+                        if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseAccuracy() == true) {
+                            LocationUtil.updateLocation()
                             param.result =  LocationUtil.accuracy
-                            XposedBridge.log("\t Modified to: ${LocationUtil.accuracy}")
                         }
+                        // else: leave param.result as is (real accuracy)
                     }
-
-                    })
+                })
 
             XposedHelpers.findAndHookMethod(
                 locationClass,
                 "getAltitude",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        LocationUtil.updateLocation()
-                        XposedBridge.log("$tag Leaving method getAltitude()")
-                        XposedBridge.log("\t Original altitude: ${param.result as Double}")
-                        if (PreferencesUtil.getUseAltitude() == true) {
+                        if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseAltitude() == true) {
+                            LocationUtil.updateLocation()
                             param.result =  LocationUtil.altitude
-                            XposedBridge.log("\t Modified to: ${LocationUtil.altitude}")
                         }
+                        // else: leave param.result as is (real altitude)
                     }
-
                 })
 
             XposedHelpers.findAndHookMethod(
@@ -89,13 +83,11 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getVerticalAccuracyMeters",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        LocationUtil.updateLocation()
-                        XposedBridge.log("$tag Leaving method getVerticalAccuracyMeters()")
-                        XposedBridge.log("\tOriginal vertical accuracy: ${param.result as Float}")
-                        if (PreferencesUtil.getUseVerticalAccuracy() == true) {
+                        if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseVerticalAccuracy() == true) {
+                            LocationUtil.updateLocation()
                             param.result = LocationUtil.verticalAccuracy
-                            XposedBridge.log("\tModified to: ${LocationUtil.verticalAccuracy}")
                         }
+                        // else: leave param.result as is (real vertical accuracy)
                     }
                 })
 
@@ -104,13 +96,11 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getSpeed",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        LocationUtil.updateLocation()
-                        XposedBridge.log("$tag Leaving method getSpeed()")
-                        XposedBridge.log("\tOriginal speed: ${param.result as Float}")
-                        if (PreferencesUtil.getUseSpeed() == true) {
+                        if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseSpeed() == true) {
+                            LocationUtil.updateLocation()
                             param.result = LocationUtil.speed
-                            XposedBridge.log("\tModified to: ${LocationUtil.speed}")
                         }
+                        // else: leave param.result as is (real speed)
                     }
                 })
 
@@ -119,13 +109,11 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 "getSpeedAccuracyMetersPerSecond",
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        LocationUtil.updateLocation()
-                        XposedBridge.log("$tag Leaving method getSpeedAccuracyMetersPerSecond()")
-                        XposedBridge.log("\tOriginal speed accuracy: ${param.result as Float}")
-                        if (PreferencesUtil.getUseSpeedAccuracy() == true) {
+                        if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseSpeedAccuracy() == true) {
+                            LocationUtil.updateLocation()
                             param.result = LocationUtil.speedAccuracy
-                            XposedBridge.log("\tModified to: ${LocationUtil.speedAccuracy}")
                         }
+                        // else: leave param.result as is (real speed accuracy)
                     }
                 })
 
@@ -135,14 +123,11 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                     "getMslAltitudeMeters",
                     object : XC_MethodHook() {
                         override fun afterHookedMethod(param: MethodHookParam) {
-                            LocationUtil.updateLocation()
-                            XposedBridge.log("$tag Leaving method getMslAltitudeMeters()")
-                            val originalMslAltitude = param.result as? Double
-                            XposedBridge.log("\tOriginal MSL altitude: $originalMslAltitude")
-                            if (PreferencesUtil.getUseMeanSeaLevel() == true) {
+                            if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseMeanSeaLevel() == true) {
+                                LocationUtil.updateLocation()
                                 param.result = LocationUtil.meanSeaLevel
-                                XposedBridge.log("\tModified to: ${LocationUtil.meanSeaLevel}")
                             }
+                            // else: leave param.result as is (real MSL altitude)
                         }
                     })
 
@@ -152,14 +137,11 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                     "getMslAltitudeAccuracyMeters",
                     object : XC_MethodHook() {
                         override fun afterHookedMethod(param: MethodHookParam) {
-                            LocationUtil.updateLocation()
-                            XposedBridge.log("$tag Leaving method getMslAltitudeAccuracyMeters()")
-                            val originalMslAltitudeAccuracy = param.result as? Float
-                            XposedBridge.log("\tOriginal MSL altitude accuracy: $originalMslAltitudeAccuracy")
-                            if (PreferencesUtil.getUseMeanSeaLevelAccuracy() == true) {
+                            if (PreferencesUtil.getIsPlaying() == true && PreferencesUtil.getUseMeanSeaLevelAccuracy() == true) {
+                                LocationUtil.updateLocation()
                                 param.result = LocationUtil.meanSeaLevelAccuracy
-                                XposedBridge.log("\tModified to: ${LocationUtil.meanSeaLevelAccuracy}")
                             }
+                            // else: leave param.result as is (real MSL altitude accuracy)
                         }
                     })
             } else {
@@ -181,13 +163,16 @@ class LocationApiHooks(val appLpparam: LoadPackageParam) {
                 String::class.java,
                 object : XC_MethodHook() {
                     override fun afterHookedMethod(param: MethodHookParam) {
-                        XposedBridge.log("$tag Leaving method getLastKnownLocation(provider)")
-                        XposedBridge.log("\t Original location: ${param.result as? Location}")
-                        val provider = param.args[0] as String
-                        XposedBridge.log("\t Requested data from: $provider")
-                        val fakeLocation =  LocationUtil.createFakeLocation(provider = provider)
-                        param.result = fakeLocation
-                        XposedBridge.log("\t Modified location: $fakeLocation")
+                        if (PreferencesUtil.getIsPlaying() == true) {
+                            XposedBridge.log("$tag Leaving method getLastKnownLocation(provider)")
+                            XposedBridge.log("\t Original location: "+ (param.result as? Location))
+                            val provider = param.args[0] as String
+                            XposedBridge.log("\t Requested data from: $provider")
+                            val fakeLocation =  LocationUtil.createFakeLocation(provider = provider)
+                            param.result = fakeLocation
+                            XposedBridge.log("\t Modified location: $fakeLocation")
+                        }
+                        // else: leave param.result as is (real location)
                     }
                 })
 
