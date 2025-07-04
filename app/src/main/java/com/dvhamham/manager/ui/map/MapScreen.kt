@@ -33,6 +33,8 @@ import com.dvhamham.manager.ui.theme.FlatRed
 import com.dvhamham.manager.ui.theme.FlatOrange
 import com.dvhamham.manager.ui.theme.FlatGray
 import com.dvhamham.manager.ui.theme.FlatWhite
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.dvhamham.manager.ui.settings.SettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,11 +71,40 @@ fun MapScreen(
                 .padding(top = 16.dp, start = 16.dp, end = 16.dp)
         ) {
             val focusManager = LocalFocusManager.current
-            
+            val settingsViewModel: SettingsViewModel = viewModel()
+            val disableNightMapMode by settingsViewModel.disableNightMapMode.collectAsState()
+            val fieldColors = if (disableNightMapMode) {
+                OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                    focusedContainerColor = Color.White.copy(alpha = 0.9f),
+                    unfocusedContainerColor = Color.White.copy(alpha = 0.9f),
+                    cursorColor = Color.Black,
+                    focusedTextColor = Color.Black,
+                    unfocusedTextColor = Color.Black,
+                    focusedLabelColor = MaterialTheme.colorScheme.primary,
+                    unfocusedLabelColor = MaterialTheme.colorScheme.outline
+                )
+            } else {
+                OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MaterialTheme.colorScheme.primary,
+                    unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                    focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
+                    unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
+                )
+            }
             OutlinedTextField(
                 value = uiState.goToPointState.value,
                 onValueChange = { mapViewModel.updateGoToPointField("coordinates", it) },
                 placeholder = { Text("Enter coordinates (lat, lng)") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.GpsFixed,
+                        contentDescription = "Go to coordinates",
+                        tint = if (disableNightMapMode) Color.Black else MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(end = 0.dp)
+                    )
+                },
                 isError = uiState.goToPointState.errorMessage != null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -93,12 +124,7 @@ fun MapScreen(
                         }
                     },
                 singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = MaterialTheme.colorScheme.primary,
-                    unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-                    focusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f)
-                ),
+                colors = fieldColors,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(onDone = {
                     Toast.makeText(context, "Done pressed!", Toast.LENGTH_SHORT).show()
