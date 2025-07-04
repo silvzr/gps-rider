@@ -299,7 +299,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // Validate combined coordinates input
-    private fun validateCoordinatesInput(input: String): String? {
+    fun validateCoordinatesInput(input: String): String? {
         if (input.isBlank()) return "Please enter coordinates"
         
         val coordinates = parseCoordinates(input)

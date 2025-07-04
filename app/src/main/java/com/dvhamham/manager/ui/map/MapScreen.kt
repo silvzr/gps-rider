@@ -105,6 +105,31 @@ fun MapScreen(
                         modifier = Modifier.padding(end = 0.dp)
                     )
                 },
+                trailingIcon = {
+                    IconButton(onClick = {
+                        val input = uiState.goToPointState.value
+                        val error = mapViewModel.run {
+                            val err = try {
+                                val parts = input.split(",").map { it.trim() }
+                                if (parts.size != 2) "Invalid format" else null
+                            } catch (e: Exception) { "Invalid format" }
+                            err ?: mapViewModel.validateCoordinatesInput(input)
+                        }
+                        if (error == null) {
+                            val (lat, lng) = input.split(",").map { it.trim().toDouble() }
+                            mapViewModel.goToPoint(lat, lng)
+                            mapViewModel.activateFakeLocationFromFavorite(lat, lng)
+                        } else {
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+                        }
+                    }) {
+                        Icon(
+                            imageVector = Icons.Default.Send,
+                            contentDescription = "Go to coordinates",
+                            tint = if (disableNightMapMode) Color.Black else MaterialTheme.colorScheme.primary
+                        )
+                    }
+                },
                 isError = uiState.goToPointState.errorMessage != null,
                 modifier = Modifier
                     .fillMaxWidth()
