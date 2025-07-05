@@ -137,10 +137,20 @@ fun MapScreen(
                         when (keyEvent.key) {
                             Key.Enter -> {
                                 if (keyEvent.type == KeyEventType.KeyDown) {
-                                    Toast.makeText(context, "Enter pressed!", Toast.LENGTH_SHORT).show()
-                                    mapViewModel.validateAndGo { latitude, longitude ->
-                                        Toast.makeText(context, "Going to: $latitude, $longitude", Toast.LENGTH_SHORT).show()
-                                        mapViewModel.goToPoint(latitude, longitude)
+                                    val input = uiState.goToPointState.value
+                                    val error = mapViewModel.run {
+                                        val err = try {
+                                            val parts = input.split(",").map { it.trim() }
+                                            if (parts.size != 2) "Invalid format" else null
+                                        } catch (e: Exception) { "Invalid format" }
+                                        err ?: mapViewModel.validateCoordinatesInput(input)
+                                    }
+                                    if (error == null) {
+                                        val (lat, lng) = input.split(",").map { it.trim().toDouble() }
+                                        mapViewModel.goToPoint(lat, lng)
+                                        mapViewModel.activateFakeLocationFromFavorite(lat, lng)
+                                    } else {
+                                        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
                                     }
                                     true
                                 } else false
@@ -152,10 +162,20 @@ fun MapScreen(
                 colors = fieldColors,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
                 keyboardActions = KeyboardActions(onDone = {
-                    Toast.makeText(context, "Done pressed!", Toast.LENGTH_SHORT).show()
-                    mapViewModel.validateAndGo { latitude, longitude ->
-                        Toast.makeText(context, "Going to: $latitude, $longitude", Toast.LENGTH_SHORT).show()
-                        mapViewModel.goToPoint(latitude, longitude)
+                    val input = uiState.goToPointState.value
+                    val error = mapViewModel.run {
+                        val err = try {
+                            val parts = input.split(",").map { it.trim() }
+                            if (parts.size != 2) "Invalid format" else null
+                        } catch (e: Exception) { "Invalid format" }
+                        err ?: mapViewModel.validateCoordinatesInput(input)
+                    }
+                    if (error == null) {
+                        val (lat, lng) = input.split(",").map { it.trim().toDouble() }
+                        mapViewModel.goToPoint(lat, lng)
+                        mapViewModel.activateFakeLocationFromFavorite(lat, lng)
+                    } else {
+                        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
                     }
                 }),
                 shape = RoundedCornerShape(16.dp)
