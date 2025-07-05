@@ -35,6 +35,8 @@ import androidx.compose.ui.text.style.TextAlign
 import com.dvhamham.manager.ui.theme.ThemeMode
 import com.dvhamham.manager.ui.theme.LocalThemeManager
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 // Dimension constants
 private object Dimensions {
@@ -244,7 +246,7 @@ fun SettingsScreen(
                                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                                     Icon(
                                                         imageVector = Icons.Default.Map,
-                                                        contentDescription = "Map icon",
+                                                        contentDescription = stringResource(R.string.content_description_map_icon),
                                                         tint = MaterialTheme.colorScheme.primary,
                                                         modifier = Modifier.size(20.dp)
                                                     )
@@ -315,7 +317,7 @@ fun SettingsScreen(
                 // Profile Icon (أكبر)
                 Icon(
                     imageVector = androidx.compose.material.icons.Icons.Default.AccountCircle,
-                    contentDescription = "Profile Icon",
+                    contentDescription = stringResource(R.string.content_description_profile_icon),
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .size(80.dp)
@@ -368,7 +370,7 @@ fun SettingsScreen(
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                     ) {
-                        Text("Support via PayPal")
+                        Text(stringResource(R.string.support_paypal))
                     }
                 }
             }
@@ -408,7 +410,7 @@ fun SettingDialogButton(setting: SettingData) {
                 .padding(start = 16.dp)
         )
         Text(
-            text = if (isEnabled) valueText + " " + (setting.unit.takeIf { isEnabled } ?: "") else "Disabled",
+            text = if (isEnabled) valueText + " " + (setting.unit.takeIf { isEnabled } ?: "") else stringResource(R.string.disabled),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
@@ -493,7 +495,7 @@ fun <T : Number> SettingValueDialog(
         text = {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(if (tempEnabled) "Enabled" else "Disabled", modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleMedium)
+                    Text(if (tempEnabled) stringResource(R.string.enabled) else stringResource(R.string.disabled), modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleMedium)
                     Switch(checked = tempEnabled, onCheckedChange = { tempEnabled = it })
                 }
                 if (tempEnabled) {
@@ -503,7 +505,7 @@ fun <T : Number> SettingValueDialog(
                             tempValue = it
                             hasError = false
                         },
-                        label = { Text("Value") },
+                        label = { Text(stringResource(R.string.value)) },
                         isError = hasError,
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth()
@@ -515,7 +517,7 @@ fun <T : Number> SettingValueDialog(
                         modifier = Modifier.padding(top = 4.dp)
                     )
                     if (hasError) {
-                        Text("Value must be between $minValue and $maxValue", color = MaterialTheme.colorScheme.error)
+                        Text(stringResource(R.string.value_range_error, minValue.toInt(), maxValue.toInt()), color = MaterialTheme.colorScheme.error)
                     }
                 }
             }
@@ -542,11 +544,11 @@ fun <T : Number> SettingValueDialog(
                     onDismiss()
                 }
             }) {
-                Text("Confirm")
+                Text(stringResource(R.string.confirm))
             }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("Cancel") }
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.cancel)) }
         }
     )
 }
@@ -597,7 +599,7 @@ fun ThemeSettingComposable(
                 ) {
                     Icon(
                         imageVector = if (isDarkMode) Icons.Default.DarkMode else Icons.Default.LightMode,
-                        contentDescription = "Theme icon",
+                        contentDescription = stringResource(R.string.content_description_theme_icon),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(20.dp)
                     )
@@ -745,7 +747,7 @@ private fun <T : Number> SettingItem(
                     ) {
                         Icon(
                             Icons.Default.Info,
-                            contentDescription = "More information about $title",
+                            contentDescription = stringResource(R.string.content_description_more_info, title),
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(16.dp)
                         )

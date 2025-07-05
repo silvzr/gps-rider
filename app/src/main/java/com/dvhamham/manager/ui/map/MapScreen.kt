@@ -35,6 +35,8 @@ import com.dvhamham.manager.ui.theme.FlatGray
 import com.dvhamham.manager.ui.theme.FlatWhite
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dvhamham.manager.ui.settings.SettingsViewModel
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -96,7 +98,7 @@ fun MapScreen(
             OutlinedTextField(
                 value = uiState.goToPointState.value,
                 onValueChange = { mapViewModel.updateGoToPointField("coordinates", it) },
-                placeholder = { Text("Enter coordinates (lat, lng)") },
+                placeholder = { Text(stringResource(R.string.enter_coordinates_placeholder)) },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.GpsFixed,
@@ -111,8 +113,8 @@ fun MapScreen(
                         val error = mapViewModel.run {
                             val err = try {
                                 val parts = input.split(",").map { it.trim() }
-                                if (parts.size != 2) "Invalid format" else null
-                            } catch (e: Exception) { "Invalid format" }
+                                if (parts.size != 2) context.getString(R.string.invalid_coordinates_format) else null
+                            } catch (e: Exception) { context.getString(R.string.invalid_coordinates_format) }
                             err ?: mapViewModel.validateCoordinatesInput(input)
                         }
                         if (error == null) {
@@ -125,7 +127,7 @@ fun MapScreen(
                     }) {
                         Icon(
                             imageVector = Icons.Default.Send,
-                            contentDescription = "Go to coordinates",
+                            contentDescription = stringResource(R.string.go_to_point),
                             tint = if (disableNightMapMode) Color.Black else MaterialTheme.colorScheme.primary
                         )
                     }
@@ -141,8 +143,8 @@ fun MapScreen(
                                     val error = mapViewModel.run {
                                         val err = try {
                                             val parts = input.split(",").map { it.trim() }
-                                            if (parts.size != 2) "Invalid format" else null
-                                        } catch (e: Exception) { "Invalid format" }
+                                            if (parts.size != 2) context.getString(R.string.invalid_coordinates_format) else null
+                                        } catch (e: Exception) { context.getString(R.string.invalid_coordinates_format) }
                                         err ?: mapViewModel.validateCoordinatesInput(input)
                                     }
                                     if (error == null) {
@@ -166,8 +168,8 @@ fun MapScreen(
                     val error = mapViewModel.run {
                         val err = try {
                             val parts = input.split(",").map { it.trim() }
-                            if (parts.size != 2) "Invalid format" else null
-                        } catch (e: Exception) { "Invalid format" }
+                            if (parts.size != 2) context.getString(R.string.invalid_coordinates_format) else null
+                        } catch (e: Exception) { context.getString(R.string.invalid_coordinates_format) }
                         err ?: mapViewModel.validateCoordinatesInput(input)
                     }
                     if (error == null) {
@@ -219,7 +221,7 @@ fun MapScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.Star,
-                    contentDescription = "Add to Favorites",
+                    contentDescription = stringResource(R.string.add_to_favorites),
                     modifier = Modifier.size(24.dp)
                 )
             }
@@ -242,7 +244,7 @@ fun MapScreen(
             ) {
                 Icon(
                     imageVector = Icons.Default.MyLocation,
-                    contentDescription = "Center to My Location",
+                    contentDescription = stringResource(R.string.content_description_center_location),
                     modifier = Modifier.size(24.dp)
                 )
             }
@@ -254,7 +256,7 @@ fun MapScreen(
                     if (isFabClickable) {
                         mapViewModel.togglePlaying()
                     } else {
-                        Toast.makeText(context, "Please select a location on the map first", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.please_select_location), Toast.LENGTH_SHORT).show()
                     }
                 },
                 modifier = Modifier.size(56.dp),

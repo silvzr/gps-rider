@@ -61,6 +61,8 @@ import androidx.compose.foundation.border
 import androidx.compose.ui.zIndex
 import android.util.Log
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -167,11 +169,11 @@ fun FavoritesScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Upload,
-                        contentDescription = "Import",
+                        contentDescription = stringResource(R.string.content_description_import),
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Import")
+                    Text(stringResource(R.string.import_label))
                 }
 
                 Button(
@@ -191,11 +193,11 @@ fun FavoritesScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Download,
-                        contentDescription = "Export",
+                        contentDescription = stringResource(R.string.content_description_export),
                         modifier = Modifier.size(18.dp)
                     )
                     Spacer(modifier = Modifier.width(4.dp))
-                    Text("Export")
+                    Text(stringResource(R.string.export))
                 }
             }
         }
@@ -230,7 +232,7 @@ fun FavoritesScreen(
                     .weight(1f),
                 contentAlignment = Alignment.Center
             ) {
-                Text("No favorite locations.")
+                Text(stringResource(R.string.no_favorite_locations))
             }
         } else {
             Box(Modifier.weight(1f)) {
@@ -324,10 +326,10 @@ fun FavoritesScreen(
     if (showImportDialog) {
         AlertDialog(
             onDismissRequest = { showImportDialog = false },
-            title = { Text("Import Locations") },
+            title = { Text(stringResource(R.string.import_locations)) },
             text = { 
                 Column {
-                    Text("You are about to import locations from a JSON file. Do you want to continue?")
+                    Text(stringResource(R.string.import_locations_message))
                     if (importErrorMessage != null) {
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
@@ -342,14 +344,14 @@ fun FavoritesScreen(
                 Button(
                     onClick = { importLauncher.launch("application/json") }
                 ) {
-                    Text("Import")
+                    Text(stringResource(R.string.import_label))
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = { showImportDialog = false }
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )
@@ -385,7 +387,7 @@ fun FavoriteItem(
             if (showDragHandle) {
                 Icon(
                     imageVector = Icons.Default.DragHandle,
-                    contentDescription = "Drag",
+                    contentDescription = stringResource(R.string.content_description_drag),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(end = 12.dp)
                 )
@@ -410,7 +412,7 @@ fun FavoriteItem(
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete",
+                    contentDescription = stringResource(R.string.content_description_delete),
                     tint = MaterialTheme.colorScheme.error
                 )
             }

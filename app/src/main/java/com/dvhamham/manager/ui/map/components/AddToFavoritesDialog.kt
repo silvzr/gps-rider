@@ -5,9 +5,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.dvhamham.R
 import com.dvhamham.manager.ui.map.MapViewModel
 
 @Composable
@@ -30,13 +32,13 @@ fun AddToFavoritesDialog(
             mapViewModel.clearAddToFavoritesInputs()
             onDismissRequest()
         },
-        title = { Text("Add to Favorites") },
+        title = { Text(stringResource(R.string.add_to_favorites)) },
         text = {
             Column {
                 OutlinedTextField(
                     value = favoriteNameInput,
                     onValueChange = { mapViewModel.updateAddToFavoritesField("name", it) },
-                    label = { Text("Name") },
+                    label = { Text(stringResource(R.string.location_name)) },
                     modifier = Modifier.fillMaxWidth(),
                     isError = favoriteNameError != null
                 )
@@ -52,8 +54,8 @@ fun AddToFavoritesDialog(
                 OutlinedTextField(
                     value = favoriteCoordinatesInput,
                     onValueChange = { mapViewModel.updateAddToFavoritesField("coordinates", it) },
-                    label = { Text("Coordinates") },
-                    placeholder = { Text("e.g., 40.7128, -74.0060") },
+                    label = { Text(stringResource(R.string.coordinates)) },
+                    placeholder = { Text(stringResource(R.string.latitude_longitude)) },
                     modifier = Modifier.fillMaxWidth(),
                     isError = favoriteCoordinatesError != null
                 )
@@ -75,7 +77,7 @@ fun AddToFavoritesDialog(
                     }
                 }
             ) {
-                Text("Add")
+                Text(stringResource(R.string.add))
             }
         },
         dismissButton = {
@@ -85,7 +87,7 @@ fun AddToFavoritesDialog(
                     onDismissRequest()
                 }
             ) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )

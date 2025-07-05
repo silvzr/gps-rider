@@ -6,6 +6,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 @Composable
 fun PermissionRequestScreen(onGrantPermission: () -> Unit) {
@@ -16,6 +18,6 @@ fun PermissionRequestScreen(onGrantPermission: () -> Unit) {
     )
     Spacer(modifier = Modifier.height(16.dp))
     Button(onClick = onGrantPermission) {
-        Text("Grant Permissions")
+        Text(stringResource(R.string.grant_permissions))
     }
 }

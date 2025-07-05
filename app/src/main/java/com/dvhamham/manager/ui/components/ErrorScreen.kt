@@ -4,6 +4,8 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 /**
  * Displays an error dialog when the Xposed module is not active.
@@ -18,18 +20,18 @@ fun ErrorScreen(
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Module Not Active") },
+        title = { Text(stringResource(R.string.module_not_active_dialog_title)) },
         text = {
-            Text("GPS Rider module is not active in your Xposed manager app. Please enable it and restart the app to continue.")
+            Text(stringResource(R.string.module_not_active_dialog_message))
         },
         confirmButton = {
             Button(onClick = onConfirm) {
-                Text("OK")
+                Text(stringResource(R.string.ok))
             }
         },
         dismissButton = {
             Button(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )

@@ -1,6 +1,250 @@
 <resources>
     <string name="app_name">GPS Rider</string>
+    
+    <!-- Navigation -->
     <string name="map">Map</string>
     <string name="favorites">Favorites</string>
     <string name="settings">Settings</string>
+    <string name="about">About</string>
+
+    <!-- Permissions -->
+    <string name="permissions_required">Permissions are required to use this app</string>
+    <string name="grant_permissions">Grant Permissions</string>
+    <string name="permissions_permanently_denied">You have permanently denied location permissions. Please enable them from settings and restart the app.</string>
+    <string name="open_settings">Open Settings</string>
+
+    <!-- Module Not Active -->
+    <string name="module_not_active">Module not active</string>
+    <string name="module_not_active_message">The GPS Rider module is not active in LSPosed/Xposed. Please enable the module and restart the app.</string>
+    <string name="module_not_active_dialog_title">Module Not Active</string>
+    <string name="module_not_active_dialog_message">GPS Rider module is not active in your Xposed manager app. Please enable it and restart the app to continue.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- About Screen -->
+    <string name="about_title">About</string>
+    <string name="back">Back</string>
+    <string name="app_description">GPS Rider is an app designed to allow users to mock their location for testing or entertainment purposes.\n\nUse it responsibly, and make sure to comply with all applicable local regulations when using location services.\n\nYou are fully responsible for the use of this app.</string>
+    <string name="version">Version:</string>
+    <string name="developed_by">Developed and maintained by:</string>
+    <string name="developer_name">noobexon</string>
+
+    <!-- Settings Screen -->
+    <string name="dark_mode">Dark Mode</string>
+    <string name="dark_mode_description">Enable dark theme for the app</string>
+    <string name="theme">Theme</string>
+    <string name="theme_description">Choose your preferred theme</string>
+    <string name="map_icon">Map icon</string>
+    <string name="theme_icon">Theme icon</string>
+    <string name="confirm">Confirm</string>
+    <string name="developer_info">Mohammed Hamham</string>
+    <string name="developer_title">Full Stack Developer, Morocco</string>
+    <string name="developer_email">Email: dv.hamham@gmail.com</string>
+    <string name="support_paypal">Support via PayPal</string>
+    <string name="more_info">More information about %s</string>
+
+    <!-- Favorites Screen -->
+    <string name="export">Export</string>
+    <string name="no_favorite_locations">No favorite locations.</string>
+    <string name="favorites_exported">Favorites exported successfully</string>
+    <string name="favorites_export_failed">Failed to export favorites</string>
+    <string name="import_label">Import</string>
+
+    <!-- Map Screen -->
+    <string name="press_enter_to_go">Press Enter to go to coordinates • Press Esc to cancel</string>
+    <string name="add_to_favorites">Add to Favorites</string>
+    <string name="go_to_point">Go to Point</string>
+    <string name="location_name">Location Name</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="latitude_longitude">Latitude, Longitude</string>
+    <string name="add">Add</string>
+    <string name="go">Go</string>
+
+    <!-- Toast Messages -->
+    <string name="fake_location_starting">جاري تشغيل الموقع المزيف…</string>
+    <string name="fake_location_stopping">جاري إيقاف الموقع المزيف…</string>
+    <string name="fake_location_toggling">جاري تبديل حالة الموقع المزيف…</string>
+    <string name="setting_location_to">جاري تعيين الموقع إلى %s…</string>
+    <string name="querying_status">جاري استعلام الحالة…</string>
+    <string name="querying_current_location">جاري استعلام الموقع الحالي…</string>
+    <string name="unknown_result">نتيجة غير معروفة</string>
+    <string name="operation_success">نجح العملية: %1$s</string>
+    <string name="operation_failed">فشل العملية: %1$s</string>
+    <string name="invalid_parameters">معاملات غير صحيحة: %1$s</string>
+    <string name="fake_location_started">تم تشغيل الموقع المزيف: %1$s</string>
+    <string name="fake_location_start_failed">فشل في تشغيل الموقع المزيف: %1$s</string>
+    <string name="location_set_result">نتيجة تعيين الموقع: %1$s</string>
+    <string name="fake_location_status">حالة الموقع المزيف: %1$s</string>
+
+    <!-- Location Names -->
+    <string name="riyadh">الرياض</string>
+    <string name="dubai">دبي</string>
+
+    <!-- Settings Categories -->
+    <string name="general_settings">General Settings</string>
+    <string name="location_settings">Location</string>
+    <string name="accuracy_settings">Accuracy Settings</string>
+    <string name="advanced_settings">Advanced</string>
+    <string name="about_developer">About Developer</string>
+    <string name="appearance_settings">Appearance</string>
+    <string name="altitude_settings">Altitude</string>
+    <string name="movement_settings">Movement</string>
+
+    <!-- Settings Titles -->
+    <string name="use_accuracy">Custom Horizontal Accuracy</string>
+    <string name="accuracy">Horizontal Accuracy</string>
+    <string name="use_altitude">Custom Altitude</string>
+    <string name="altitude">Altitude</string>
+    <string name="use_randomize">Randomize Nearby Location</string>
+    <string name="randomize_radius">Randomization Radius</string>
+    <string name="use_vertical_accuracy">Custom Vertical Accuracy</string>
+    <string name="vertical_accuracy">Vertical Accuracy</string>
+    <string name="use_mean_sea_level">Custom MSL</string>
+    <string name="mean_sea_level">MSL</string>
+    <string name="use_mean_sea_level_accuracy">Custom MSL Accuracy</string>
+    <string name="mean_sea_level_accuracy">MSL Accuracy</string>
+    <string name="use_speed">Custom Speed</string>
+    <string name="speed">Speed</string>
+    <string name="use_speed_accuracy">Custom Speed Accuracy</string>
+    <string name="speed_accuracy">Speed Accuracy</string>
+    <string name="use_system_hook">Hook System Location</string>
+    <string name="disable_night_map_mode">Disable Night Map Mode</string>
+
+    <!-- Settings Descriptions -->
+    <string name="use_accuracy_description">Sets the horizontal accuracy of your location</string>
+    <string name="accuracy_description">Set the accuracy value in meters</string>
+    <string name="use_altitude_description">Sets a custom altitude for your location</string>
+    <string name="altitude_description">Set the altitude value in meters</string>
+    <string name="use_randomize_description">Randomly places your location within the specified radius</string>
+    <string name="randomize_radius_description">Set the randomization radius in meters</string>
+    <string name="use_vertical_accuracy_description">Sets the vertical accuracy of your location</string>
+    <string name="vertical_accuracy_description">Set the vertical accuracy value in meters</string>
+    <string name="use_mean_sea_level_description">Sets a custom mean sea level value</string>
+    <string name="mean_sea_level_description">Set the mean sea level value in meters</string>
+    <string name="use_mean_sea_level_accuracy_description">Sets the accuracy of the mean sea level value</string>
+    <string name="mean_sea_level_accuracy_description">Set the mean sea level accuracy value in meters</string>
+    <string name="use_speed_description">Sets a custom speed for your location</string>
+    <string name="speed_description">Set the speed value in meters per second</string>
+    <string name="use_speed_accuracy_description">Sets the accuracy of your speed value</string>
+    <string name="speed_accuracy_description">Set the speed accuracy value in meters per second</string>
+    <string name="use_system_hook_description">Enable system-wide location hook (requires module)</string>
+    <string name="disable_night_map_mode_description">Keep the map always light.</string>
+
+    <!-- Units -->
+    <string name="unit_meters">m</string>
+    <string name="unit_meters_per_second">m/s</string>
+    <string name="unit_degrees">°</string>
+
+    <!-- Error Messages -->
+    <string name="error_reading_preferences">Error reading preferences: %1$s</string>
+    <string name="error_saving_preference">Error saving preference %1$s: %2$s</string>
+    <string name="error_parsing_last_clicked_location">Error parsing LastClickedLocation: %1$s</string>
+    <string name="error_saving_last_clicked_location">Error saving LastClickedLocation: %1$s</string>
+    <string name="error_clearing_last_clicked_location">Error clearing LastClickedLocation: %1$s</string>
+    <string name="error_parsing_favorites">Error parsing Favorites: %1$s</string>
+    <string name="error_adding_favorite">Error adding favorite: %1$s</string>
+    <string name="error_saving_favorites">Error saving favorites: %1$s</string>
+    <string name="error_removing_favorite">Error removing favorite: %1$s</string>
+    <string name="error_parsing_location_history">Error parsing Location History: %1$s</string>
+    <string name="error_adding_to_location_history">Error adding to location history: %1$s</string>
+    <string name="error_clearing_location_history">Error clearing location history: %1$s</string>
+
+    <!-- Success Messages -->
+    <string name="saved_preference">Saved %1$s: %2$s</string>
+    <string name="cleared_last_clicked_location">Cleared \'LastClickedLocation\' from preferences and set \'IsPlaying\' to false</string>
+    <string name="adding_favorite">Adding favorite: %s</string>
+    <string name="getting_existing_favorites">Getting existing favorites…</string>
+    <string name="existing_favorites_count">Existing favorites count: %1$d</string>
+    <string name="existing_favorites">Existing favorites: %1$s</string>
+    <string name="updated_existing_favorite">Updated existing favorite at index %1$d: %2$s</string>
+    <string name="added_new_favorite">Added new favorite: %1$s</string>
+    <string name="final_favorites_list_count">Final favorites list count: %1$d</string>
+    <string name="final_favorites_list">Final favorites list: %1$s</string>
+    <string name="calling_save_favorites">Calling saveFavorites…</string>
+    <string name="successfully_saved_favorites">Successfully saved favorites</string>
+    <string name="saving_favorites">Saving %1$d favorites: %2$s</string>
+    <string name="json_string">JSON string: %1$s</string>
+    <string name="calling_save_preference">Calling savePreference…</string>
+    <string name="successfully_called_save_preference">Successfully called savePreference</string>
+    <string name="verifying_save_by_reading_back">Verifying save by reading back…</string>
+    <string name="read_back_favorites">Read back %1$d favorites: %2$s</string>
+    <string name="saved_favorites_successfully">Saved %d favorites successfully</string>
+    <string name="removed_favorite">Removed favorite: %s</string>
+    <string name="location_history_cleared">Location history cleared</string>
+
+    <!-- Content Descriptions -->
+    <string name="content_description_export">Export</string>
+    <string name="content_description_map_icon">Map icon</string>
+    <string name="content_description_theme_icon">Theme icon</string>
+    <string name="content_description_back">Back</string>
+    <string name="content_description_more_info">More information about %s</string>
+    <string name="content_description_profile_icon">Profile Icon</string>
+    <string name="content_description_drag">Drag</string>
+    <string name="content_description_delete">Delete</string>
+    <string name="content_description_center_location">Center to My Location</string>
+    <string name="content_description_adjust_value">Adjust %s value</string>
+
+    <!-- Dialog and Form -->
+    <string name="value">Value</string>
+    <string name="value_range_error">Value must be between %1$d and %2$d</string>
+
+    <!-- Update Dialog -->
+    <string name="update_available">Update Available</string>
+    <string name="update_available_message">A new update (%1$s) is available. Would you like to update?</string>
+    <string name="update">Update</string>
+    <string name="later">Later</string>
+
+    <!-- Map Screen -->
+    <string name="enter_coordinates_placeholder">Enter coordinates (lat, lng)</string>
+    <string name="enter_pressed">Enter pressed!</string>
+    <string name="going_to_coordinates">Going to: %1$s, %2$s</string>
+    <string name="done_pressed">Done pressed!</string>
+    <string name="please_select_location">Please select a location on the map first</string>
+    <string name="fake_location_activated">Fake location activated at coordinates</string>
+
+    <!-- Permissions Screen -->
+    <string name="error_unable_access_activity">Error: Unable to access activity.</string>
+
+    <!-- Map View Container -->
+    <string name="user_location_not_available">User location not available. Please check location permissions and GPS.</string>
+    <string name="error_moving_to_location">Error moving to location: %s</string>
+
+    <!-- Favorites Screen -->
+    <string name="import_locations">Import Locations</string>
+    <string name="import_locations_message">You are about to import locations from a JSON file. Do you want to continue?</string>
+
+    <!-- Main Hook -->
+    <string name="fake_location_active">Fake Location Is Active!</string>
+
+    <!-- Favorite Location Model -->
+    <string name="general_category">General</string>
+
+    <!-- Map View Container -->
+    <string name="selected_location">Selected Location</string>
+    <string name="location_coordinates">Lat: %1$s, Lng: %2$s</string>
+    <string name="updating_map">Updating Map…</string>
+
+    <!-- Content Descriptions -->
+    <string name="content_description_import">Import</string>
+
+    <!-- Export Messages -->
+    <string name="no_locations_to_export">No locations to export</string>
+
+    <!-- New string resources -->
+    <string name="file_empty_or_invalid">File is empty or invalid</string>
+    <string name="error_reading_file">Error reading file: %1$s</string>
+    <string name="exported_locations_successfully">Exported %1$d locations successfully</string>
+    <string name="error_exporting_file">Error exporting file: %1$s</string>
+
+    <!-- Status Text -->
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="english">English</string>
+
+    <!-- Validation Messages -->
+    <string name="please_provide_name">Please provide a name</string>
+    <string name="please_enter_coordinates">Please enter coordinates</string>
+    <string name="invalid_coordinates_format">Invalid format. Use: latitude, longitude (e.g., 40.7128, -74.0060)</string>
+    <string name="latitude_range_error">Latitude must be between -90 and 90</string>
+    <string name="longitude_range_error">Longitude must be between -180 and 180</string>
 </resources>

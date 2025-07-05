@@ -28,6 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.platform.LocalContext
 import com.dvhamham.BuildConfig
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,7 +55,7 @@ fun AboutScreen(
 @Composable
 fun AboutTopAppBar(navController: NavController) {
     TopAppBar(
-        title = { Text("About") },
+        title = { Text(stringResource(R.string.about_title)) },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary,
             titleContentColor = MaterialTheme.colorScheme.onPrimary,
@@ -62,7 +64,7 @@ fun AboutTopAppBar(navController: NavController) {
         ),
         navigationIcon = {
             IconButton(onClick = { navController.navigateUp() }) {
-                Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                Icon(Icons.Default.ArrowBack, contentDescription = stringResource(R.string.content_description_back))
             }
         }
     )
@@ -87,7 +89,7 @@ fun AboutContent() {
 @Composable
 fun AppTitle() {
     Text(
-        text = "GPS Rider",
+        text = stringResource(R.string.app_name),
         style = MaterialTheme.typography.headlineSmall.copy(
             fontWeight = FontWeight.Bold
         ),
@@ -98,13 +100,7 @@ fun AppTitle() {
 @Composable
 fun AppDescription() {
     Text(
-        text = """
-            GPS Rider is an app designed to allow users to mock their location for testing or entertainment purposes. 
-            
-            Use it responsibly, and make sure to comply with all applicable local regulations when using location services. 
-            
-            You are fully responsible for the use of this app.
-        """.trimIndent(),
+        text = stringResource(R.string.app_description),
         style = MaterialTheme.typography.bodyLarge,
         textAlign = TextAlign.Center
     )
@@ -120,7 +116,7 @@ fun AppVersionSection() {
 @Composable
 fun AppVersionTitle() {
     Text(
-        text = "Version:",
+        text = stringResource(R.string.version),
         style = MaterialTheme.typography.bodyMedium.copy(
             fontWeight = FontWeight.SemiBold
         ),
@@ -151,7 +147,7 @@ fun AppDeveloperSection() {
 @Composable
 fun AppDeveloperTitle() {
     Text(
-        text = "Developed and maintained by:",
+        text = stringResource(R.string.developed_by),
         style = MaterialTheme.typography.bodyMedium.copy(
             fontWeight = FontWeight.SemiBold
         ),
@@ -164,7 +160,7 @@ fun AppDeveloperTitle() {
 fun AppDeveloperValue() {
     val context = LocalContext.current
     Text(
-        text = "noobexon",
+        text = stringResource(R.string.developer_name),
         style = MaterialTheme.typography.bodyMedium.copy(
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.primary

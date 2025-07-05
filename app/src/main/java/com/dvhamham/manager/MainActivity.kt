@@ -43,6 +43,8 @@ import java.net.HttpURLConnection
 import java.net.URL
 import org.json.JSONObject
 import com.dvhamham.BuildConfig
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 class MainActivity : ComponentActivity() {
     
@@ -163,8 +165,8 @@ class MainActivity : ComponentActivity() {
                         if (showUpdateDialog) {
                             AlertDialog(
                                 onDismissRequest = { showUpdateDialog = false },
-                                title = { Text("Update Available") },
-                                text = { Text("A new update ($updateVersion) is available. Would you like to update?") },
+                                title = { Text(stringResource(R.string.update_available)) },
+                                text = { Text(stringResource(R.string.update_available_message, updateVersion)) },
                                 confirmButton = {
                                     Button(onClick = {
                                         showUpdateDialog = false
@@ -172,10 +174,10 @@ class MainActivity : ComponentActivity() {
                                             val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(updateDownloadUrl))
                                             startActivity(intent)
                                         }
-                                    }) { Text("Update") }
+                                    }) { Text(stringResource(R.string.update)) }
                                 },
                                 dismissButton = {
-                                    Button(onClick = { showUpdateDialog = false }) { Text("Later") }
+                                    Button(onClick = { showUpdateDialog = false }) { Text(stringResource(R.string.later)) }
                                 }
                             )
                         }

@@ -16,6 +16,8 @@ import androidx.navigation.NavController
 import com.dvhamham.manager.ui.navigation.Screen
 import com.dvhamham.manager.ui.permissions.components.PermanentlyDeniedScreen
 import com.dvhamham.manager.ui.permissions.components.PermissionRequestScreen
+import androidx.compose.ui.res.stringResource
+import com.dvhamham.R
 
 @Composable
 fun PermissionsScreen(navController: NavController, permissionsViewModel: PermissionsViewModel = viewModel()) {
@@ -23,7 +25,7 @@ fun PermissionsScreen(navController: NavController, permissionsViewModel: Permis
     val activity = context as? Activity
 
     if (activity == null) {
-        Text("Error: Unable to access activity.")
+        Text(stringResource(R.string.error_unable_access_activity))
         return
     }
 

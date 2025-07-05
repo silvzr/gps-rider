@@ -140,11 +140,11 @@ private fun HandleCenterMapEvent(
                             durationMs = 500
                         )
                     } else {
-                        Toast.makeText(context, "User location not available. Please check location permissions and GPS.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, context.getString(R.string.user_location_not_available), Toast.LENGTH_LONG).show()
                     }
                 }
             } catch (e: Exception) {
-                Toast.makeText(context, "Error moving to location: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.error_moving_to_location, e.message), Toast.LENGTH_SHORT).show()
             }
         }
     }

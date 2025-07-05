@@ -10,8 +10,10 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.dvhamham.R
 import com.dvhamham.manager.ui.map.MapViewModel
 
 @Composable
@@ -53,8 +55,8 @@ fun GoToPointDialog(
             OutlinedTextField(
                 value = coordinatesInput,
                 onValueChange = { mapViewModel.updateGoToPointField("coordinates", it) },
-                label = { Text("Enter coordinates (lat, lng)") },
-                placeholder = { Text("e.g., 40.7128, -74.0060") },
+                label = { Text(stringResource(R.string.enter_coordinates_placeholder)) },
+                placeholder = { Text(stringResource(R.string.latitude_longitude)) },
                 isError = coordinatesError != null,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -98,7 +100,7 @@ fun GoToPointDialog(
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "Press Enter to go to coordinates • Press Esc to cancel",
+                text = stringResource(R.string.press_enter_to_go),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(start = 16.dp)
