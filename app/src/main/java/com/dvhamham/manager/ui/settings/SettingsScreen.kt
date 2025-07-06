@@ -458,7 +458,7 @@ fun SettingDialogButton(setting: SettingData) {
         when (setting) {
             is DoubleSettingData -> {
                 SettingValueDialog(
-                    title = setting.title,
+                    title = getSettingTitle(setting.title),
                     value = setting.valueState.value,
                     onValueChange = setting.setValue,
                     enabled = setting.useValueState.value,
@@ -473,7 +473,7 @@ fun SettingDialogButton(setting: SettingData) {
             }
             is FloatSettingData -> {
                 SettingValueDialog(
-                    title = setting.title,
+                    title = getSettingTitle(setting.title),
                     value = setting.valueState.value,
                     onValueChange = setting.setValue,
                     enabled = setting.useValueState.value,

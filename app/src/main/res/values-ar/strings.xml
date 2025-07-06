@@ -199,4 +199,7 @@
 
     <!-- Disabled -->
     <string name="disabled">معطل</string>
+
+    <!-- Map Screen -->
+    <string name="enter_coordinates_placeholder">أدخل الإحداثيات (خط العرض، خط الطول)</string>
 </resources> 
