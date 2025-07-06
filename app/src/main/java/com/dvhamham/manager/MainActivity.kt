@@ -48,6 +48,9 @@ import com.dvhamham.R
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import com.dvhamham.manager.ui.language.rememberLanguageManager
+import android.content.res.Configuration
+import java.util.*
+import com.dvhamham.manager.ui.language.LanguageManager
 
 class MainActivity : ComponentActivity() {
     
@@ -55,6 +58,9 @@ class MainActivity : ComponentActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Initialize saved language before creating UI
+        initializeSavedLanguage()
         
         try {
             // Register broadcast receiver
@@ -275,6 +281,26 @@ class MainActivity : ComponentActivity() {
             }
         } catch (e: Exception) {
             Log.e("MainActivity", "Error handling incoming intent: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+    
+    private fun initializeSavedLanguage() {
+        try {
+            val languageManager = LanguageManager(this)
+            val savedLanguage = languageManager.getCurrentLanguage()
+            Log.d("MainActivity", "Initializing saved language: $savedLanguage")
+            
+            val locale = Locale(savedLanguage)
+            Locale.setDefault(locale)
+            
+            val config = Configuration(resources.configuration)
+            config.setLocale(locale)
+            
+            resources.updateConfiguration(config, resources.displayMetrics)
+            Log.d("MainActivity", "Language initialized successfully")
+        } catch (e: Exception) {
+            Log.e("MainActivity", "Error initializing language: ${e.message}")
             e.printStackTrace()
         }
     }
