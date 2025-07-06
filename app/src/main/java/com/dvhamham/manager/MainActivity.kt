@@ -45,6 +45,9 @@ import org.json.JSONObject
 import com.dvhamham.BuildConfig
 import androidx.compose.ui.res.stringResource
 import com.dvhamham.R
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
+import com.dvhamham.manager.ui.language.rememberLanguageManager
 
 class MainActivity : ComponentActivity() {
     
@@ -134,7 +137,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
             
-            CompositionLocalProvider(LocalThemeManager provides themeManager) {
+            val languageManager = rememberLanguageManager()
+            CompositionLocalProvider(
+                LocalThemeManager provides themeManager,
+                LocalLayoutDirection provides languageManager.getLayoutDirection()
+            ) {
                 GPSRiderTheme(darkTheme = isDarkMode) {
                     // Update status bar after theme is applied
                     LaunchedEffect(isDarkMode) {

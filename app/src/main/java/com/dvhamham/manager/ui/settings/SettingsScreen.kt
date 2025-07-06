@@ -37,6 +37,8 @@ import com.dvhamham.manager.ui.theme.LocalThemeManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.dvhamham.R
+import com.dvhamham.manager.ui.language.rememberLanguageManager
+import com.dvhamham.manager.ui.components.LanguageBottomSheet
 
 // Dimension constants
 private object Dimensions {
@@ -53,7 +55,7 @@ private object Dimensions {
 private object SettingDefinitions {
     // Define setting categories
     val CATEGORIES = mapOf(
-        "Appearance" to listOf("Dark Mode", "Disable Night Map Mode"),
+        "Appearance" to listOf("Dark Mode", "Language", "Disable Night Map Mode"),
         "Location" to listOf("Randomize Nearby Location", "Custom Horizontal Accuracy", "Custom Vertical Accuracy"),
         "Altitude" to listOf("Custom Altitude", "Custom MSL", "Custom MSL Accuracy"),
         "Movement" to listOf("Custom Speed", "Custom Speed Accuracy"),
@@ -65,6 +67,8 @@ private object SettingDefinitions {
     fun getSettings(viewModel: SettingsViewModel): List<SettingData> = listOf(
         // Dark Mode Setting
         ThemeSettingData(),
+        // Language Setting
+        LanguageSettingData(),
         // Disable Night Map Mode
         BooleanSettingData(
             title = "Disable Night Map Mode",
@@ -235,6 +239,7 @@ fun SettingsScreen(
                             } else {
                                 when (setting) {
                                     is ThemeSettingData -> ThemeSettingComposable(setting, themeManager)
+                                    is LanguageSettingData -> LanguageSettingComposable()
                                     is BooleanSettingData -> {
                                         Row(
                                             verticalAlignment = Alignment.CenterVertically,
@@ -1028,3 +1033,69 @@ data class BooleanSettingData(
     override val maxValue: Float = 1f,
     override val step: Float = 1f
 ) : SettingData()
+
+data class LanguageSettingData(
+    override val title: String = "Language",
+    override val description: String = "Choose your preferred language",
+    override val useValueState: State<Boolean> = mutableStateOf(true),
+    override val setUseValue: (Boolean) -> Unit = {},
+    override val label: String = "Language",
+    override val unit: String = "",
+    override val minValue: Float = 0f,
+    override val maxValue: Float = 1f,
+    override val step: Float = 1f
+) : SettingData()
+
+@Composable
+fun LanguageSettingComposable() {
+    val languageManager = rememberLanguageManager()
+    var showLanguageMenu by remember { mutableStateOf(false) }
+    
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { showLanguageMenu = true }
+            .padding(Dimensions.SPACING_SMALL)
+    ) {
+        Column(modifier = Modifier.weight(1f)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    imageVector = Icons.Default.Language,
+                    contentDescription = stringResource(R.string.language),
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(modifier = Modifier.width(Dimensions.SPACING_SMALL))
+                Text(
+                    text = stringResource(R.string.language),
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Medium
+                )
+            }
+            Text(
+                text = stringResource(R.string.language_description),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = Dimensions.SPACING_EXTRA_SMALL)
+            )
+        }
+        
+        Text(
+            text = languageManager.getLanguageDisplayName(languageManager.getCurrentLanguage()),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+    }
+    
+    if (showLanguageMenu) {
+        LanguageBottomSheet(
+            languageManager = languageManager,
+            onLanguageSelected = { language ->
+                languageManager.setLanguage(language.code)
+                showLanguageMenu = false
+            },
+            onDismiss = { showLanguageMenu = false }
+        )
+    }
+}

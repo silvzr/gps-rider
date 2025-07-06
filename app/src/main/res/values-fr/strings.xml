@@ -1,0 +1,255 @@
+<resources>
+    <!-- Example translations, will be filled with all keys from English -->
+    <string name="app_name">GPS Rider</string>
+    
+    <!-- Navigation -->
+    <string name="map">Carte</string>
+    <string name="favorites">Favoris</string>
+    <string name="settings">Paramètres</string>
+    <string name="about">À propos</string>
+
+    <!-- Permissions -->
+    <string name="permissions_required">Les permissions sont requises pour utiliser cette application</string>
+    <string name="grant_permissions">Accorder les permissions</string>
+    <string name="permissions_permanently_denied">Vous avez définitivement refusé les permissions de localisation. Veuillez les activer depuis les paramètres et redémarrer l\'application.</string>
+    <string name="open_settings">Ouvrir les paramètres</string>
+
+    <!-- Module Not Active -->
+    <string name="module_not_active">Module non actif</string>
+    <string name="module_not_active_message">Le module GPS Rider n\'est pas actif dans LSPosed/Xposed. Veuillez activer le module et redémarrer l\'application.</string>
+    <string name="module_not_active_dialog_title">Module non actif</string>
+    <string name="module_not_active_dialog_message">Le module GPS Rider n\'est pas actif dans votre application de gestion Xposed. Veuillez l\'activer et redémarrer l\'application pour continuer.</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+
+    <!-- About Screen -->
+    <string name="about_title">À propos</string>
+    <string name="back">Retour</string>
+    <string name="app_description">GPS Rider est une application conçue pour permettre aux utilisateurs de simuler leur localisation à des fins de test ou de divertissement.\n\nUtilisez-la de manière responsable et assurez-vous de respecter toutes les réglementations locales applicables lors de l\'utilisation des services de localisation.\n\nVous êtes entièrement responsable de l\'utilisation de cette application.</string>
+    <string name="version">Version :</string>
+    <string name="developed_by">Développé et maintenu par :</string>
+    <string name="developer_name">noobexon</string>
+
+    <!-- Settings Screen -->
+    <string name="dark_mode">Mode sombre</string>
+    <string name="dark_mode_description">Activer le thème sombre pour l\'application</string>
+    <string name="theme">Thème</string>
+    <string name="theme_description">Choisissez votre thème préféré</string>
+    <string name="map_icon">Icône de carte</string>
+    <string name="theme_icon">Icône de thème</string>
+    <string name="confirm">Confirmer</string>
+    <string name="developer_info">Mohammed Hamham</string>
+    <string name="developer_title">Développeur Full Stack, Maroc</string>
+    <string name="developer_email">Email : dv.hamham@gmail.com</string>
+    <string name="support_paypal">Support via PayPal</string>
+    <string name="more_info">Plus d\'informations sur %s</string>
+    <string name="language">Langue</string>
+    <string name="language_description">Choisissez votre langue préférée</string>
+
+    <!-- Favorites Screen -->
+    <string name="export">Exporter</string>
+    <string name="no_favorite_locations">Aucun emplacement favori.</string>
+    <string name="favorites_exported">Favoris exportés avec succès</string>
+    <string name="favorites_export_failed">Échec de l\'exportation des favoris</string>
+    <string name="import_label">Importer</string>
+
+    <!-- Map Screen -->
+    <string name="press_enter_to_go">Appuyez sur Entrée pour aller aux coordonnées • Appuyez sur Échap pour annuler</string>
+    <string name="add_to_favorites">Ajouter aux favoris</string>
+    <string name="go_to_point">Aller au point</string>
+    <string name="location_name">Nom de l\'emplacement</string>
+    <string name="coordinates">Coordonnées</string>
+    <string name="latitude_longitude">Latitude, Longitude</string>
+    <string name="add">Ajouter</string>
+    <string name="go">Aller</string>
+
+    <!-- Toast Messages -->
+    <string name="fake_location_starting">Démarrage de la localisation fictive…</string>
+    <string name="fake_location_stopping">Arrêt de la localisation fictive…</string>
+    <string name="fake_location_toggling">Basculement de l\'état de la localisation fictive…</string>
+    <string name="setting_location_to">Définition de la localisation à %s…</string>
+    <string name="querying_status">Interrogation du statut…</string>
+    <string name="querying_current_location">Interrogation de la localisation actuelle…</string>
+    <string name="unknown_result">Résultat inconnu</string>
+    <string name="operation_success">Opération réussie : %1$s</string>
+    <string name="operation_failed">Échec de l\'opération : %1$s</string>
+    <string name="invalid_parameters">Paramètres invalides : %1$s</string>
+    <string name="fake_location_started">Localisation fictive démarrée : %1$s</string>
+    <string name="fake_location_start_failed">Échec du démarrage de la localisation fictive : %1$s</string>
+    <string name="location_set_result">Résultat de la définition de la localisation : %1$s</string>
+    <string name="fake_location_status">Statut de la localisation fictive : %1$s</string>
+
+    <!-- Location Names -->
+    <string name="riyadh">Riyad</string>
+    <string name="dubai">Dubaï</string>
+
+    <!-- Settings Categories -->
+    <string name="general_settings">Paramètres généraux</string>
+    <string name="location_settings">Localisation</string>
+    <string name="accuracy_settings">Paramètres de précision</string>
+    <string name="advanced_settings">Avancé</string>
+    <string name="about_developer">À propos du développeur</string>
+    <string name="appearance_settings">Apparence</string>
+    <string name="altitude_settings">Altitude</string>
+    <string name="movement_settings">Mouvement</string>
+
+    <!-- Settings Titles -->
+    <string name="use_accuracy">Précision horizontale personnalisée</string>
+    <string name="accuracy">Précision horizontale</string>
+    <string name="use_altitude">Altitude personnalisée</string>
+    <string name="altitude">Altitude</string>
+    <string name="use_randomize">Randomiser l\'emplacement à proximité</string>
+    <string name="randomize_radius">Rayon de randomisation</string>
+    <string name="use_vertical_accuracy">Précision verticale personnalisée</string>
+    <string name="vertical_accuracy">Précision verticale</string>
+    <string name="use_mean_sea_level">Niveau de la mer personnalisé</string>
+    <string name="mean_sea_level">Niveau de la mer</string>
+    <string name="use_mean_sea_level_accuracy">Précision du niveau de la mer personnalisée</string>
+    <string name="mean_sea_level_accuracy">Précision du niveau de la mer</string>
+    <string name="use_speed">Vitesse personnalisée</string>
+    <string name="speed">Vitesse</string>
+    <string name="use_speed_accuracy">Précision de la vitesse personnalisée</string>
+    <string name="speed_accuracy">Précision de la vitesse</string>
+    <string name="use_system_hook">Crochet de localisation système</string>
+    <string name="disable_night_map_mode">Désactiver le mode carte nocturne</string>
+
+    <!-- Settings Descriptions -->
+    <string name="use_accuracy_description">Définit la précision horizontale de votre localisation</string>
+    <string name="accuracy_description">Définir la valeur de précision en mètres</string>
+    <string name="use_altitude_description">Définit une altitude personnalisée pour votre localisation</string>
+    <string name="altitude_description">Définir la valeur d\'altitude en mètres</string>
+    <string name="use_randomize_description">Place aléatoirement votre localisation dans le rayon spécifié</string>
+    <string name="randomize_radius_description">Définir le rayon de randomisation en mètres</string>
+    <string name="use_vertical_accuracy_description">Définit la précision verticale de votre localisation</string>
+    <string name="vertical_accuracy_description">Définir la valeur de précision verticale en mètres</string>
+    <string name="use_mean_sea_level_description">Définit une valeur de niveau de la mer personnalisée</string>
+    <string name="mean_sea_level_description">Définir la valeur du niveau de la mer en mètres</string>
+    <string name="use_mean_sea_level_accuracy_description">Définit la précision de la valeur du niveau de la mer</string>
+    <string name="mean_sea_level_accuracy_description">Définir la valeur de précision du niveau de la mer en mètres</string>
+    <string name="use_speed_description">Définit une vitesse personnalisée pour votre localisation</string>
+    <string name="speed_description">Définir la valeur de vitesse en mètres par seconde</string>
+    <string name="use_speed_accuracy_description">Définit la précision de votre valeur de vitesse</string>
+    <string name="speed_accuracy_description">Définir la valeur de précision de la vitesse en mètres par seconde</string>
+    <string name="use_system_hook_description">Activer le crochet de localisation système (nécessite le module)</string>
+    <string name="disable_night_map_mode_description">Garder la carte toujours claire</string>
+
+    <!-- Units -->
+    <string name="unit_meters">m</string>
+    <string name="unit_meters_per_second">m/s</string>
+    <string name="unit_degrees">°</string>
+
+    <!-- Error Messages -->
+    <string name="error_reading_preferences">Erreur lors de la lecture des préférences : %1$s</string>
+    <string name="error_saving_preference">Erreur lors de la sauvegarde de la préférence %1$s : %2$s</string>
+    <string name="error_parsing_last_clicked_location">Erreur lors de l\'analyse de LastClickedLocation : %1$s</string>
+    <string name="error_saving_last_clicked_location">Erreur lors de la sauvegarde de LastClickedLocation : %1$s</string>
+    <string name="error_clearing_last_clicked_location">Erreur lors de l\'effacement de LastClickedLocation : %1$s</string>
+    <string name="error_parsing_favorites">Erreur lors de l\'analyse des favoris : %1$s</string>
+    <string name="error_adding_favorite">Erreur lors de l\'ajout du favori : %1$s</string>
+    <string name="error_saving_favorites">Erreur lors de la sauvegarde des favoris : %1$s</string>
+    <string name="error_removing_favorite">Erreur lors de la suppression du favori : %1$s</string>
+    <string name="error_parsing_location_history">Erreur lors de l\'analyse de l\'historique de localisation : %1$s</string>
+    <string name="error_adding_to_location_history">Erreur lors de l\'ajout à l\'historique de localisation : %1$s</string>
+    <string name="error_clearing_location_history">Erreur lors de l\'effacement de l\'historique de localisation : %1$s</string>
+
+    <!-- Success Messages -->
+    <string name="saved_preference">Préférence sauvegardée %1$s : %2$s</string>
+    <string name="cleared_last_clicked_location">LastClickedLocation effacé des préférences et IsPlaying défini sur false</string>
+    <string name="adding_favorite">Ajout du favori : %s</string>
+    <string name="getting_existing_favorites">Récupération des favoris existants…</string>
+    <string name="existing_favorites_count">Nombre de favoris existants : %1$d</string>
+    <string name="existing_favorites">Favoris existants : %1$s</string>
+    <string name="updated_existing_favorite">Favori existant mis à jour à l\'index %1$d : %2$s</string>
+    <string name="added_new_favorite">Nouveau favori ajouté : %1$s</string>
+    <string name="final_favorites_list_count">Nombre final de favoris : %1$d</string>
+    <string name="final_favorites_list">Liste finale des favoris : %1$s</string>
+    <string name="calling_save_favorites">Appel de saveFavorites…</string>
+    <string name="successfully_saved_favorites">Favoris sauvegardés avec succès</string>
+    <string name="saving_favorites">Sauvegarde de %1$d favoris : %2$s</string>
+    <string name="json_string">Chaîne JSON : %1$s</string>
+    <string name="calling_save_preference">Appel de savePreference…</string>
+    <string name="successfully_called_save_preference">savePreference appelé avec succès</string>
+    <string name="verifying_save_by_reading_back">Vérification de la sauvegarde en relisant…</string>
+    <string name="read_back_favorites">Relu %1$d favoris : %2$s</string>
+    <string name="saved_favorites_successfully">%d favoris sauvegardés avec succès</string>
+    <string name="removed_favorite">Favori supprimé : %s</string>
+    <string name="location_history_cleared">Historique de localisation effacé</string>
+
+    <!-- Content Descriptions -->
+    <string name="content_description_export">Exporter</string>
+    <string name="content_description_map_icon">Icône de carte</string>
+    <string name="content_description_theme_icon">Icône de thème</string>
+    <string name="content_description_back">Retour</string>
+    <string name="content_description_more_info">Plus d\'informations sur %s</string>
+    <string name="content_description_profile_icon">Icône de profil</string>
+    <string name="content_description_drag">Glisser</string>
+    <string name="content_description_delete">Supprimer</string>
+    <string name="content_description_center_location">Centrer sur ma localisation</string>
+    <string name="content_description_adjust_value">Ajuster la valeur %s</string>
+
+    <!-- Dialog and Form -->
+    <string name="value">Valeur</string>
+    <string name="value_range_error">La valeur doit être comprise entre %1$d et %2$d</string>
+
+    <!-- Update Dialog -->
+    <string name="update_available">Mise à jour disponible</string>
+    <string name="update_available_message">Une nouvelle mise à jour (%1$s) est disponible. Voulez-vous mettre à jour ?</string>
+    <string name="update">Mettre à jour</string>
+    <string name="later">Plus tard</string>
+
+    <!-- Map Screen -->
+    <string name="enter_coordinates_placeholder">Entrez les coordonnées (lat, lng)</string>
+    <string name="enter_pressed">Entrée pressée !</string>
+    <string name="going_to_coordinates">Aller à : %1$s, %2$s</string>
+    <string name="done_pressed">Terminé pressé !</string>
+    <string name="please_select_location">Veuillez sélectionner un emplacement sur la carte d\'abord</string>
+    <string name="fake_location_activated">Localisation fictive activée aux coordonnées</string>
+
+    <!-- Permissions Screen -->
+    <string name="error_unable_access_activity">Erreur : Impossible d\'accéder à l\'activité.</string>
+
+    <!-- Map View Container -->
+    <string name="user_location_not_available">Localisation utilisateur non disponible. Veuillez vérifier les permissions de localisation et le GPS.</string>
+    <string name="error_moving_to_location">Erreur lors du déplacement vers l\'emplacement : %s</string>
+
+    <!-- Favorites Screen -->
+    <string name="import_locations">Importer les emplacements</string>
+    <string name="import_locations_message">Vous êtes sur le point d\'importer des emplacements depuis un fichier JSON. Voulez-vous continuer ?</string>
+
+    <!-- Main Hook -->
+    <string name="fake_location_active">La localisation fictive est active !</string>
+
+    <!-- Favorite Location Model -->
+    <string name="general_category">Général</string>
+
+    <!-- Map View Container -->
+    <string name="selected_location">Emplacement sélectionné</string>
+    <string name="location_coordinates">Lat : %1$s, Lng : %2$s</string>
+    <string name="updating_map">Mise à jour de la carte…</string>
+
+    <!-- Content Descriptions -->
+    <string name="content_description_import">Importer</string>
+
+    <!-- Export Messages -->
+    <string name="no_locations_to_export">Aucun emplacement à exporter</string>
+
+    <!-- New string resources -->
+    <string name="file_empty_or_invalid">Le fichier est vide ou invalide</string>
+    <string name="error_reading_file">Erreur lors de la lecture du fichier : %1$s</string>
+    <string name="exported_locations_successfully">%1$d emplacements exportés avec succès</string>
+    <string name="error_exporting_file">Erreur lors de l\'exportation du fichier : %1$s</string>
+
+    <!-- Status Text -->
+    <string name="enabled">Activé</string>
+    <string name="disabled">Désactivé</string>
+    <string name="english">Anglais</string>
+    <string name="french">Français</string>
+    <string name="arabic">Arabe</string>
+
+    <!-- Validation Messages -->
+    <string name="please_provide_name">Veuillez fournir un nom</string>
+    <string name="please_enter_coordinates">Veuillez entrer les coordonnées</string>
+    <string name="invalid_coordinates_format">Format invalide. Utilisez : latitude, longitude (ex : 40.7128, -74.0060)</string>
+    <string name="latitude_range_error">La latitude doit être comprise entre -90 et 90</string>
+    <string name="longitude_range_error">La longitude doit être comprise entre -180 et 180</string>
+</resources> 
