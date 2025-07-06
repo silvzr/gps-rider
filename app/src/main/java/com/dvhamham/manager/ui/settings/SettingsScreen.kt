@@ -40,6 +40,28 @@ import com.dvhamham.R
 import com.dvhamham.manager.ui.language.rememberLanguageManager
 import com.dvhamham.manager.ui.components.LanguageBottomSheet
 
+// Helper function to get translated setting title
+@Composable
+fun getSettingTitle(title: String): String {
+    return stringResource(
+        id = when (title) {
+            "Dark Mode" -> R.string.dark_mode
+            "Language" -> R.string.language
+            "Disable Night Map Mode" -> R.string.disable_night_map_mode
+            "Randomize Nearby Location" -> R.string.use_randomize
+            "Custom Horizontal Accuracy" -> R.string.use_accuracy
+            "Custom Vertical Accuracy" -> R.string.use_vertical_accuracy
+            "Custom Altitude" -> R.string.use_altitude
+            "Custom MSL" -> R.string.use_mean_sea_level
+            "Custom MSL Accuracy" -> R.string.use_mean_sea_level_accuracy
+            "Custom Speed" -> R.string.use_speed
+            "Custom Speed Accuracy" -> R.string.use_speed_accuracy
+            "Hook System Location" -> R.string.use_system_hook
+            else -> R.string.app_name
+        }
+    )
+}
+
 // Dimension constants
 private object Dimensions {
     val SPACING_EXTRA_SMALL = 4.dp
@@ -55,11 +77,11 @@ private object Dimensions {
 private object SettingDefinitions {
     // Define setting categories
     val CATEGORIES = mapOf(
-        "Appearance" to listOf("Dark Mode", "Language", "Disable Night Map Mode"),
-        "Location" to listOf("Randomize Nearby Location", "Custom Horizontal Accuracy", "Custom Vertical Accuracy"),
-        "Altitude" to listOf("Custom Altitude", "Custom MSL", "Custom MSL Accuracy"),
-        "Movement" to listOf("Custom Speed", "Custom Speed Accuracy"),
-        "Advanced" to listOf("Hook System Location")
+        "appearance_settings" to listOf("Dark Mode", "Language", "Disable Night Map Mode"),
+        "location_settings" to listOf("Randomize Nearby Location", "Custom Horizontal Accuracy", "Custom Vertical Accuracy"),
+        "altitude_settings" to listOf("Custom Altitude", "Custom MSL", "Custom MSL Accuracy"),
+        "movement_settings" to listOf("Custom Speed", "Custom Speed Accuracy"),
+        "advanced_settings" to listOf("Hook System Location")
     )
     
     // Define all settings with their parameters
@@ -216,9 +238,18 @@ fun SettingsScreen(
                 .padding(horizontal = Dimensions.SPACING_MEDIUM)
             .padding(top = Dimensions.SPACING_LARGE)
         ) {
-            SettingDefinitions.CATEGORIES.forEach { (category, settingsInCategory) ->
+            SettingDefinitions.CATEGORIES.forEach { (categoryKey, settingsInCategory) ->
             Text(
-                text = category,
+                text = stringResource(
+                    id = when (categoryKey) {
+                        "appearance_settings" -> R.string.appearance_settings
+                        "location_settings" -> R.string.location_settings
+                        "altitude_settings" -> R.string.altitude_settings
+                        "movement_settings" -> R.string.movement_settings
+                        "advanced_settings" -> R.string.advanced_settings
+                        else -> R.string.appearance_settings
+                    }
+                ),
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -257,7 +288,7 @@ fun SettingsScreen(
                                                     )
                                                     Spacer(modifier = Modifier.width(Dimensions.SPACING_SMALL))
                                                     Text(
-                                                        text = setting.title,
+                                                        text = getSettingTitle(setting.title),
                                                         style = MaterialTheme.typography.titleMedium,
                                                         fontWeight = FontWeight.Medium
                                                     )
@@ -408,7 +439,7 @@ fun SettingDialogButton(setting: SettingData) {
             .padding(vertical = 8.dp)
     ) {
         Text(
-            text = setting.title,
+            text = getSettingTitle(setting.title),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier
                 .align(Alignment.Start)
@@ -1003,7 +1034,7 @@ fun SettingDialogButton(setting: HookSystemSettingData) {
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = setting.title,
+            text = getSettingTitle(setting.title),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.weight(1f)
         )
