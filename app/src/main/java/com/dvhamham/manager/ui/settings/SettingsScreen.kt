@@ -94,7 +94,7 @@ private object SettingDefinitions {
         // Disable Night Map Mode
         BooleanSettingData(
             title = "Disable Night Map Mode",
-            description = "Keep the map always light.",
+            description = stringResource(R.string.disable_night_map_mode_description),
             useValueState = viewModel.disableNightMapMode.collectAsState(),
             setUseValue = viewModel::setDisableNightMapMode
         ),
@@ -641,14 +641,14 @@ fun ThemeSettingComposable(
                     )
                     Spacer(modifier = Modifier.width(Dimensions.SPACING_SMALL))
                     Text(
-                        text = "Dark Mode",
+                        text = stringResource(R.string.dark_mode),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Medium
                     )
                 }
                 
                 Text(
-                    text = "Enable dark theme for the app",
+                    text = stringResource(R.string.dark_mode_description),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = Dimensions.SPACING_EXTRA_SMALL)
