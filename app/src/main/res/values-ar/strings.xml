@@ -1,3 +1,202 @@
 <resources>
     <!-- Example translations, will be filled with all keys from English -->
+    <string name="app_name">GPS Rider</string>
+    
+    <!-- Navigation -->
+    <string name="map">الخريطة</string>
+    <string name="favorites">المفضلة</string>
+    <string name="settings">الإعدادات</string>
+    <string name="about">حول</string>
+
+    <!-- Permissions -->
+    <string name="permissions_required">الأذونات مطلوبة لاستخدام هذا التطبيق</string>
+    <string name="grant_permissions">منح الأذونات</string>
+    <string name="permissions_permanently_denied">لقد رفضت أذونات الموقع بشكل دائم. يرجى تفعيلها من الإعدادات وإعادة تشغيل التطبيق.</string>
+    <string name="open_settings">فتح الإعدادات</string>
+
+    <!-- Module Not Active -->
+    <string name="module_not_active">الوحدة غير نشطة</string>
+    <string name="module_not_active_message">وحدة GPS Rider غير نشطة في LSPosed/Xposed. يرجى تفعيل الوحدة وإعادة تشغيل التطبيق.</string>
+    <string name="module_not_active_dialog_title">الوحدة غير نشطة</string>
+    <string name="module_not_active_dialog_message">وحدة GPS Rider غير نشطة في تطبيق إدارة Xposed الخاص بك. يرجى تفعيلها وإعادة تشغيل التطبيق للمتابعة.</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">إلغاء</string>
+
+    <!-- About Screen -->
+    <string name="about_title">حول</string>
+    <string name="back">رجوع</string>
+    <string name="app_description">GPS Rider هو تطبيق مصمم لتمكين المستخدمين من محاكاة موقعهم لأغراض الاختبار أو الترفيه.\n\nاستخدمه بمسؤولية وتأكد من احترام جميع اللوائح المحلية المعمول بها عند استخدام خدمات الموقع.\n\nأنت مسؤول بالكامل عن استخدام هذا التطبيق.</string>
+    <string name="version">الإصدار:</string>
+    <string name="developed_by">تم التطوير والصيانة بواسطة:</string>
+    <string name="developer_name">noobexon</string>
+
+    <!-- Settings Screen -->
+    <string name="dark_mode">الوضع المظلم</string>
+    <string name="dark_mode_description">تفعيل السمة المظلمة للتطبيق</string>
+    <string name="theme">المظهر</string>
+    <string name="theme_description">اختر المظهر المفضل لديك</string>
+    <string name="map_icon">أيقونة الخريطة</string>
+    <string name="theme_icon">أيقونة المظهر</string>
+    <string name="confirm">تأكيد</string>
+    <string name="developer_info">محمد حمدان</string>
+    <string name="developer_title">مطور Full Stack، المغرب</string>
+    <string name="developer_email">البريد الإلكتروني: dv.hamham@gmail.com</string>
+    <string name="support_paypal">الدعم عبر PayPal</string>
+    <string name="more_info">المزيد من المعلومات حول %s</string>
+    <string name="language">اللغة</string>
+    <string name="language_description">اختر لغتك المفضلة</string>
+
+    <!-- Favorites Screen -->
+    <string name="export">تصدير</string>
+    <string name="no_favorite_locations">لا توجد مواقع مفضلة.</string>
+    <string name="favorites_exported">تم تصدير المفضلة بنجاح</string>
+    <string name="favorites_export_failed">فشل في تصدير المفضلة</string>
+    <string name="import_label">استيراد</string>
+
+    <!-- Map Screen -->
+    <string name="press_enter_to_go">اضغط Enter للذهاب إلى الإحداثيات • اضغط Esc للإلغاء</string>
+    <string name="add_to_favorites">إضافة إلى المفضلة</string>
+    <string name="go_to_point">الذهاب إلى النقطة</string>
+    <string name="location_name">اسم الموقع</string>
+    <string name="coordinates">الإحداثيات</string>
+    <string name="latitude_longitude">خط العرض، خط الطول</string>
+    <string name="add">إضافة</string>
+    <string name="go">اذهب</string>
+
+    <!-- Toast Messages -->
+    <string name="fake_location_starting">جاري تشغيل الموقع المزيف…</string>
+    <string name="fake_location_stopping">جاري إيقاف الموقع المزيف…</string>
+    <string name="fake_location_toggling">جاري تبديل حالة الموقع المزيف…</string>
+    <string name="setting_location_to">جاري تعيين الموقع إلى %s…</string>
+    <string name="querying_status">جاري استعلام الحالة…</string>
+    <string name="querying_current_location">جاري استعلام الموقع الحالي…</string>
+    <string name="unknown_result">نتيجة غير معروفة</string>
+    <string name="operation_success">نجح العملية: %1$s</string>
+    <string name="operation_failed">فشل العملية: %1$s</string>
+    <string name="invalid_parameters">معاملات غير صحيحة: %1$s</string>
+    <string name="fake_location_started">تم تشغيل الموقع المزيف: %1$s</string>
+    <string name="fake_location_start_failed">فشل في تشغيل الموقع المزيف: %1$s</string>
+    <string name="location_set_result">نتيجة تعيين الموقع: %1$s</string>
+    <string name="fake_location_status">حالة الموقع المزيف: %1$s</string>
+
+    <!-- Location Names -->
+    <string name="riyadh">الرياض</string>
+    <string name="dubai">دبي</string>
+
+    <!-- Settings Categories -->
+    <string name="general_settings">الإعدادات العامة</string>
+    <string name="location_settings">الموقع</string>
+    <string name="accuracy_settings">إعدادات الدقة</string>
+    <string name="advanced_settings">متقدم</string>
+    <string name="about_developer">حول المطور</string>
+    <string name="appearance_settings">المظهر</string>
+    <string name="altitude_settings">الارتفاع</string>
+    <string name="movement_settings">الحركة</string>
+
+    <!-- Settings Titles -->
+    <string name="use_accuracy">دقة أفقية مخصصة</string>
+    <string name="accuracy">الدقة الأفقية</string>
+    <string name="use_altitude">ارتفاع مخصص</string>
+    <string name="altitude">الارتفاع</string>
+    <string name="use_randomize">عشوائية الموقع القريب</string>
+    <string name="randomize_radius">نصف قطر العشوائية</string>
+    <string name="use_vertical_accuracy">دقة رأسية مخصصة</string>
+    <string name="vertical_accuracy">الدقة الرأسية</string>
+    <string name="use_mean_sea_level">مستوى سطح البحر المخصص</string>
+    <string name="mean_sea_level">مستوى سطح البحر</string>
+    <string name="use_mean_sea_level_accuracy">دقة مستوى سطح البحر المخصصة</string>
+    <string name="mean_sea_level_accuracy">دقة مستوى سطح البحر</string>
+    <string name="use_speed">سرعة مخصصة</string>
+    <string name="speed">السرعة</string>
+    <string name="use_speed_accuracy">دقة السرعة المخصصة</string>
+    <string name="speed_accuracy">دقة السرعة</string>
+    <string name="use_system_hook">ربط موقع النظام</string>
+    <string name="disable_night_map_mode">تعطيل وضع الخريطة الليلي</string>
+
+    <!-- Settings Descriptions -->
+    <string name="use_accuracy_description">يحدد الدقة الأفقية لموقعك</string>
+    <string name="accuracy_description">تعيين قيمة الدقة بالأمتار</string>
+    <string name="use_altitude_description">يحدد ارتفاع مخصص لموقعك</string>
+    <string name="altitude_description">تعيين قيمة الارتفاع بالأمتار</string>
+    <string name="use_randomize_description">يضع موقعك عشوائياً ضمن نصف القطر المحدد</string>
+    <string name="randomize_radius_description">تعيين نصف قطر العشوائية بالأمتار</string>
+    <string name="use_vertical_accuracy_description">يحدد الدقة الرأسية لموقعك</string>
+    <string name="vertical_accuracy_description">تعيين قيمة الدقة الرأسية بالأمتار</string>
+    <string name="use_mean_sea_level_description">يحدد قيمة مخصصة لمستوى سطح البحر</string>
+    <string name="mean_sea_level_description">تعيين قيمة مستوى سطح البحر بالأمتار</string>
+    <string name="use_mean_sea_level_accuracy_description">يحدد دقة قيمة مستوى سطح البحر</string>
+    <string name="mean_sea_level_accuracy_description">تعيين قيمة دقة مستوى سطح البحر بالأمتار</string>
+    <string name="use_speed_description">يحدد سرعة مخصصة لموقعك</string>
+    <string name="speed_description">تعيين قيمة السرعة بالأمتار في الثانية</string>
+    <string name="use_speed_accuracy_description">يحدد دقة قيمة سرعتك</string>
+    <string name="speed_accuracy_description">تعيين قيمة دقة السرعة بالأمتار في الثانية</string>
+    <string name="use_system_hook_description">تفعيل ربط موقع النظام (يتطلب الوحدة)</string>
+    <string name="disable_night_map_mode_description">إبقاء الخريطة مضيئة دائماً</string>
+
+    <!-- Units -->
+    <string name="unit_meters">م</string>
+    <string name="unit_meters_per_second">م/ث</string>
+    <string name="unit_degrees">°</string>
+
+    <!-- Error Messages -->
+    <string name="error_reading_preferences">خطأ في قراءة التفضيلات: %1$s</string>
+    <string name="error_saving_preference">خطأ في حفظ التفضيل %1$s: %2$s</string>
+    <string name="error_parsing_last_clicked_location">خطأ في تحليل LastClickedLocation: %1$s</string>
+    <string name="error_saving_last_clicked_location">خطأ في حفظ LastClickedLocation: %1$s</string>
+    <string name="error_clearing_last_clicked_location">خطأ في مسح LastClickedLocation: %1$s</string>
+    <string name="error_parsing_favorites">خطأ في تحليل المفضلة: %1$s</string>
+    <string name="error_adding_favorite">خطأ في إضافة المفضلة: %1$s</string>
+    <string name="error_saving_favorites">خطأ في حفظ المفضلة: %1$s</string>
+    <string name="error_removing_favorite">خطأ في إزالة المفضلة: %1$s</string>
+    <string name="error_parsing_location_history">خطأ في تحليل سجل الموقع: %1$s</string>
+    <string name="error_adding_to_location_history">خطأ في إضافة سجل الموقع: %1$s</string>
+    <string name="error_clearing_location_history">خطأ في مسح سجل الموقع: %1$s</string>
+
+    <!-- Success Messages -->
+    <string name="saved_preference">تم حفظ التفضيل %1$s: %2$s</string>
+    <string name="cleared_last_clicked_location">تم مسح LastClickedLocation من التفضيلات وتعيين IsPlaying على false</string>
+    <string name="adding_favorite">إضافة المفضلة: %s</string>
+    <string name="getting_existing_favorites">جاري الحصول على المفضلة الموجودة…</string>
+    <string name="existing_favorites_count">عدد المفضلة الموجودة: %1$d</string>
+    <string name="existing_favorites">المفضلة الموجودة: %1$s</string>
+    <string name="updated_existing_favorite">تم تحديث المفضلة الموجودة في الفهرس %1$d: %2$s</string>
+    <string name="added_new_favorite">تم إضافة مفضلة جديدة: %1$s</string>
+    <string name="final_favorites_list_count">العدد النهائي للمفضلة: %1$d</string>
+    <string name="final_favorites_list">قائمة المفضلة النهائية: %1$s</string>
+    <string name="calling_save_favorites">استدعاء saveFavorites…</string>
+    <string name="successfully_saved_favorites">تم حفظ المفضلة بنجاح</string>
+    <string name="saving_favorites">حفظ %1$d مفضلة: %2$s</string>
+    <string name="json_string">سلسلة JSON: %1$s</string>
+    <string name="calling_save_preference">استدعاء savePreference…</string>
+    <string name="successfully_called_save_preference">تم استدعاء savePreference بنجاح</string>
+    <string name="verifying_save_by_reading_back">التحقق من الحفظ بإعادة القراءة…</string>
+    <string name="read_back_favorites">إعادة قراءة %1$d مفضلة: %2$s</string>
+    <string name="saved_favorites_successfully">تم حفظ %d مفضلة بنجاح</string>
+    <string name="removed_favorite">تم إزالة المفضلة: %s</string>
+    <string name="location_history_cleared">تم مسح سجل الموقع</string>
+
+    <!-- Content Descriptions -->
+    <string name="content_description_export">تصدير</string>
+    <string name="content_description_map_icon">أيقونة الخريطة</string>
+    <string name="content_description_theme_icon">أيقونة المظهر</string>
+    <string name="content_description_back">رجوع</string>
+    <string name="content_description_more_info">المزيد من المعلومات حول %s</string>
+    <string name="content_description_profile_icon">أيقونة الملف الشخصي</string>
+    <string name="content_description_drag">سحب</string>
+    <string name="content_description_delete">حذف</string>
+    <string name="content_description_center_location">توسيط على موقعي</string>
+    <string name="content_description_adjust_value">تعديل القيمة %s</string>
+
+    <!-- Dialog and Form -->
+    <string name="value">القيمة</string>
+    <string name="value_range_error">يجب أن تكون القيمة بين %1$d و %2$d</string>
+
+    <!-- Update Dialog -->
+    <string name="update_available">تحديث متاح</string>
+    <string name="update_available_message">تحديث جديد (%1$s) متاح. هل تريد التحديث؟</string>
+    <string name="update">تحديث</string>
+    <string name="later">لاحقاً</string>
+
+    <!-- Disabled -->
+    <string name="disabled">معطل</string>
 </resources> 

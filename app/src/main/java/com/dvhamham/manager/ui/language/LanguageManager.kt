@@ -41,7 +41,7 @@ class LanguageManager(private val context: Context) {
         val config = Configuration(context.resources.configuration)
         config.setLocale(locale)
         
-        context.createConfigurationContext(config)
+        // Update the configuration for the current context
         context.resources.updateConfiguration(config, context.resources.displayMetrics)
         
         // Force recreation of the activity to apply language changes
