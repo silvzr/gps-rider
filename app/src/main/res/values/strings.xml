@@ -201,7 +201,7 @@
     <string name="center_location">Center</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="add_favorite">Add Favorit</string>
+    <string name="add_favorite">Favorit</string>
     <string name="enter_pressed">Enter pressed!</string>
     <string name="going_to_coordinates">Going to: %1$s, %2$s</string>
     <string name="done_pressed">Done pressed!</string>

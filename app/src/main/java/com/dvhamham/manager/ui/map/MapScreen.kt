@@ -215,6 +215,7 @@ fun MapScreen(
                     contentColor = MaterialTheme.colorScheme.onTertiary
                 ),
                 shape = RoundedCornerShape(12.dp),
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 10.dp),
                 modifier = Modifier.weight(1f)
             ) {
                 Row(
@@ -247,6 +248,7 @@ fun MapScreen(
                     contentColor = MaterialTheme.colorScheme.onPrimary
                 ),
                 shape = RoundedCornerShape(12.dp),
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
                 modifier = Modifier.weight(1f)
             ) {
                 Row(
@@ -291,6 +293,7 @@ fun MapScreen(
                     }
                 ),
                 shape = RoundedCornerShape(12.dp),
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
                 modifier = Modifier.weight(1f)
             ) {
                 Row(
