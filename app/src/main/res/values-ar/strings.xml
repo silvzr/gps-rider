@@ -203,4 +203,8 @@
 
     <!-- Map Screen -->
     <string name="enter_coordinates_placeholder">أدخل الإحداثيات (خط العرض، خط الطول)</string>
+    <string name="center_location">توسيط</string>
+    <string name="start">تشغيل</string>
+    <string name="stop">إيقاف</string>
+    <string name="add_favorite">إضافة مفضلة</string>
 </resources> 

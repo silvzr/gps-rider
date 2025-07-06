@@ -196,61 +196,80 @@ fun MapScreen(
             }
         }
         
-        // Floating Action Buttons in bottom right corner
-        Column(
+        // Horizontal Action Buttons at bottom
+        Row(
             modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(end = 24.dp, bottom = 100.dp, top = 16.dp), // Added top padding of 16dp
-            verticalArrangement = Arrangement.spacedBy(16.dp) // Increased spacing from 12dp to 16dp
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 16.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            // Add to Favorites FAB
-            FloatingActionButton(
+            // Add to Favorites Button
+            Button(
                 onClick = {
                     haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     mapViewModel.showAddToFavoritesDialog()
                 },
-                modifier = Modifier.size(56.dp),
-                containerColor = MaterialTheme.colorScheme.tertiary,
-                contentColor = MaterialTheme.colorScheme.onTertiary,
-                shape = RoundedCornerShape(16.dp),
-                elevation = FloatingActionButtonDefaults.elevation(
-                    defaultElevation = 6.dp,
-                    pressedElevation = 12.dp,
-                    hoveredElevation = 8.dp
-                )
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.tertiary,
+                    contentColor = MaterialTheme.colorScheme.onTertiary
+                ),
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier.weight(1f)
             ) {
-                Icon(
-                    imageVector = Icons.Default.Star,
-                    contentDescription = stringResource(R.string.add_to_favorites),
-                    modifier = Modifier.size(24.dp)
-                )
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Star,
+                        contentDescription = stringResource(R.string.add_to_favorites),
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = stringResource(R.string.add_favorite),
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                }
             }
             
-            // Center to My Location FAB
-            FloatingActionButton(
+            Spacer(modifier = Modifier.width(8.dp))
+            
+            // Center to My Location Button
+            Button(
                 onClick = {
                     haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     mapViewModel.triggerCenterMapEvent()
                 },
-                modifier = Modifier.size(56.dp),
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = MaterialTheme.colorScheme.onPrimary,
-                shape = RoundedCornerShape(16.dp),
-                elevation = FloatingActionButtonDefaults.elevation(
-                    defaultElevation = 6.dp,
-                    pressedElevation = 12.dp,
-                    hoveredElevation = 8.dp
-                )
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
+                ),
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier.weight(1f)
             ) {
-                Icon(
-                    imageVector = Icons.Default.MyLocation,
-                    contentDescription = stringResource(R.string.content_description_center_location),
-                    modifier = Modifier.size(24.dp)
-                )
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.MyLocation,
+                        contentDescription = stringResource(R.string.content_description_center_location),
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = stringResource(R.string.center_location),
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                }
             }
             
-            // Toggle Fake Location FAB - Main Button
-            FloatingActionButton(
+            Spacer(modifier = Modifier.width(8.dp))
+            
+            // Toggle Fake Location Button - Main Button
+            Button(
                 onClick = {
                     haptic.performHapticFeedback(HapticFeedbackType.TextHandleMove)
                     if (isFabClickable) {
@@ -259,29 +278,36 @@ fun MapScreen(
                         Toast.makeText(context, context.getString(R.string.please_select_location), Toast.LENGTH_SHORT).show()
                     }
                 },
-                modifier = Modifier.size(56.dp),
-                containerColor = if (isFabClickable) {
-                    if (isPlaying) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary
-                } else {
-                    MaterialTheme.colorScheme.surfaceVariant
-                },
-                contentColor = if (isFabClickable) {
-                    if (isPlaying) MaterialTheme.colorScheme.onError else MaterialTheme.colorScheme.onSecondary
-                } else {
-                    MaterialTheme.colorScheme.onSurfaceVariant
-                },
-                shape = RoundedCornerShape(16.dp),
-                elevation = FloatingActionButtonDefaults.elevation(
-                    defaultElevation = 8.dp,
-                    pressedElevation = 16.dp,
-                    hoveredElevation = 12.dp
-                )
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (isFabClickable) {
+                        if (isPlaying) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.secondary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                    contentColor = if (isFabClickable) {
+                        if (isPlaying) MaterialTheme.colorScheme.onError else MaterialTheme.colorScheme.onSecondary
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    }
+                ),
+                shape = RoundedCornerShape(12.dp),
+                modifier = Modifier.weight(1f)
             ) {
-                Icon(
-                    imageVector = if (isPlaying) Icons.Default.Stop else Icons.Default.PlayArrow,
-                    contentDescription = if (isPlaying) "Stop Fake Location" else "Start Fake Location",
-                    modifier = Modifier.size(24.dp)
-                )
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = if (isPlaying) Icons.Default.Stop else Icons.Default.PlayArrow,
+                        contentDescription = if (isPlaying) "Stop Fake Location" else "Start Fake Location",
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = if (isPlaying) stringResource(R.string.stop) else stringResource(R.string.start),
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                }
             }
         }
     }
