@@ -197,7 +197,8 @@
     <string name="update">تحديث</string>
     <string name="later">لاحقاً</string>
 
-    <!-- Disabled -->
+    <!-- Status Text -->
+    <string name="enabled">مفعل</string>
     <string name="disabled">معطل</string>
 
     <!-- Map Screen -->

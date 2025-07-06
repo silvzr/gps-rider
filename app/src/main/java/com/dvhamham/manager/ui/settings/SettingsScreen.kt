@@ -531,7 +531,11 @@ fun <T : Number> SettingValueDialog(
         text = {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(if (tempEnabled) stringResource(R.string.enabled) else stringResource(R.string.disabled), modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = if (tempEnabled) stringResource(R.string.enabled) else stringResource(R.string.disabled),
+                        modifier = Modifier.weight(1f),
+                        style = MaterialTheme.typography.titleMedium
+                    )
                     Switch(checked = tempEnabled, onCheckedChange = { tempEnabled = it })
                 }
                 if (tempEnabled) {
