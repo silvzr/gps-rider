@@ -58,19 +58,57 @@ class LanguageManager(private val context: Context) {
     }
     
     fun getLanguageDisplayName(languageCode: String): String {
+        val currentLanguage = getCurrentLanguage()
         return when (languageCode) {
-            LANGUAGE_ENGLISH -> "English"
-            LANGUAGE_FRENCH -> "Français"
-            LANGUAGE_ARABIC -> "العربية"
+            LANGUAGE_ENGLISH -> when (currentLanguage) {
+                LANGUAGE_FRENCH -> "Anglais"
+                LANGUAGE_ARABIC -> "الإنجليزية"
+                else -> "English"
+            }
+            LANGUAGE_FRENCH -> when (currentLanguage) {
+                LANGUAGE_FRENCH -> "Français"
+                LANGUAGE_ARABIC -> "الفرنسية"
+                else -> "French"
+            }
+            LANGUAGE_ARABIC -> when (currentLanguage) {
+                LANGUAGE_FRENCH -> "Arabe"
+                LANGUAGE_ARABIC -> "العربية"
+                else -> "Arabic"
+            }
             else -> "English"
         }
     }
     
     fun getAvailableLanguages(): List<Language> {
+        val currentLanguage = getCurrentLanguage()
         return listOf(
-            Language(LANGUAGE_ENGLISH, "English", "English"),
-            Language(LANGUAGE_FRENCH, "Français", "French"),
-            Language(LANGUAGE_ARABIC, "العربية", "Arabic")
+            Language(
+                LANGUAGE_ENGLISH, 
+                when (currentLanguage) {
+                    LANGUAGE_FRENCH -> "Anglais"
+                    LANGUAGE_ARABIC -> "الإنجليزية"
+                    else -> "English"
+                },
+                "English"
+            ),
+            Language(
+                LANGUAGE_FRENCH, 
+                when (currentLanguage) {
+                    LANGUAGE_FRENCH -> "Français"
+                    LANGUAGE_ARABIC -> "الفرنسية"
+                    else -> "French"
+                },
+                "French"
+            ),
+            Language(
+                LANGUAGE_ARABIC, 
+                when (currentLanguage) {
+                    LANGUAGE_FRENCH -> "Arabe"
+                    LANGUAGE_ARABIC -> "العربية"
+                    else -> "Arabic"
+                },
+                "Arabic"
+            )
         )
     }
 }
