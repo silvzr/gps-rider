@@ -28,11 +28,6 @@
         android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         
-        <!-- Google Maps API Key -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAtkw6W7emWB2JdO5aDiNPRPDSooqQ0Nfs" />
-        
         <activity
             android:name=".manager.MainActivity"
             android:exported="true"
